@@ -5,5 +5,7 @@
     children: Snippet<[context: any]>;
   }
 
-  let { ...props }: Props = $props();
+  let { children, ...props }: Props = $props();
 </script>
+
+{@render children({})}
