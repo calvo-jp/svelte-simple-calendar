@@ -6,15 +6,15 @@ import { isSameDay } from './is-same-day.js';
 import { isToday } from './is-today.js';
 import { startOfMonth } from './sart-of-month.js';
 import { subDays } from './sub-days.js';
-import type { Calendar, Day, Weekday } from './types.js';
+import type { CalendarDate, ICalendar, Weekday } from './types.js';
 
 interface CalendarConfig {
   weekStartsOn?: Weekday;
   disabledDates?: Date[] | ((date: Date) => boolean);
 }
 
-export function createCalendar(base: Date, config?: CalendarConfig): Calendar {
-  const days: Day[] = [];
+export function createCalendar(base: Date, config?: CalendarConfig): ICalendar {
+  const days: CalendarDate[] = [];
 
   const monthTotalDays = getDaysInMonth(base);
   const monthFirstDay = startOfMonth(base);
@@ -31,12 +31,12 @@ export function createCalendar(base: Date, config?: CalendarConfig): Calendar {
   }
 
   for (let i = 0; i < monthTotalDays; ++i) {
-    const date = addDays(monthFirstDay, i);
+    const value = addDays(monthFirstDay, i);
 
     days.push({
-      date,
-      isToday: isToday(date),
-      isDisabled: checkDisabled(date),
+      value,
+      isToday: isToday(value),
+      isDisabled: checkDisabled(value),
       isPlaceholder: false,
       isNextMonthDate: false,
       isPreviousMonthDate: false,
@@ -54,12 +54,12 @@ export function createCalendar(base: Date, config?: CalendarConfig): Calendar {
     diff = diff < 0 ? 7 + diff : diff;
 
     for (let i = 1; i <= diff; ++i) {
-      const date = subDays(monthFirstDay, i);
+      const value = subDays(monthFirstDay, i);
 
       days.unshift({
-        date,
+        value,
         isToday: false,
-        isDisabled: checkDisabled(date),
+        isDisabled: checkDisabled(value),
         isPlaceholder: true,
         isNextMonthDate: false,
         isPreviousMonthDate: true,
@@ -77,7 +77,7 @@ export function createCalendar(base: Date, config?: CalendarConfig): Calendar {
       const value = addDays(monthLastDay, i);
 
       days.push({
-        date: value,
+        value,
         isToday: false,
         isDisabled: checkDisabled(value),
         isPlaceholder: true,
@@ -91,7 +91,7 @@ export function createCalendar(base: Date, config?: CalendarConfig): Calendar {
     year: base.getFullYear(),
     month: base.getMonth(),
     weeks: chunk(days, 7),
-    weekdays: [
+    days: [
       ...weekdays.slice(weekStartsOnIndex),
       ...weekdays.slice(0, weekStartsOnIndex),
     ],

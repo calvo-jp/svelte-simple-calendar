@@ -7,8 +7,8 @@ export type Weekday =
   | 'Friday'
   | 'Saturday';
 
-export interface Day {
-  date: Date;
+export interface CalendarDate {
+  value: Date;
   isToday: boolean;
   isDisabled: boolean;
   isPlaceholder: boolean;
@@ -16,13 +16,13 @@ export interface Day {
   isPreviousMonthDate: boolean;
 }
 
-export type Week = Day[];
+export type Week = CalendarDate[];
 
-export interface Calendar {
+export interface ICalendar {
   year: number;
   month: number;
   weeks: Week[];
-  weekdays: string[];
+  days: string[];
 }
 
 export interface DateRange {
