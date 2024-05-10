@@ -34,7 +34,7 @@
               <Calendar.Week {...i}>
                 {#snippet children(j)}
                   <td>
-                    <Calendar.Day {...j} />
+                    <Calendar.Date {...j} />
                   </td>
                 {/snippet}
               </Calendar.Week>
