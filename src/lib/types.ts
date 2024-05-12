@@ -21,6 +21,8 @@ export type Month =
   | 'November'
   | 'December';
 
+export type Year = number & { _?: never };
+
 export interface CalendarDate {
   value: Date;
   isToday: boolean;
@@ -33,7 +35,7 @@ export interface CalendarDate {
 export type Week = CalendarDate[];
 
 export interface ICalendar {
-  year: number;
+  year: Year;
   month: Month;
   weeks: Week[];
   weekdays: Weekday[];
