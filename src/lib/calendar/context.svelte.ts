@@ -55,14 +55,10 @@ export function createCalendarContext(props?: CreateCalendarContextProps) {
 }
 
 export function setCalendarContext(context: CreateCalendarContextReturn) {
-  setContext('calendar', {
-    get value() {
-      return context;
-    },
-  });
+  setContext('calendar', context);
 }
 
 export function getCalendarContext() {
-  const context = getContext<{ value: CreateCalendarContextReturn }>('calendar');
-  return context.value;
+  const context = getContext<CreateCalendarContextReturn>('calendar');
+  return context;
 }
