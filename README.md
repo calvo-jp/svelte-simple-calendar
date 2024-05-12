@@ -1,5 +1,15 @@
 ## Svelte Simple Calendar
 
+Calendar component for svelte
+
+## Installation
+
+```bash
+npm install svelte-simple-calendar
+```
+
+## Usage
+
 ```svelte
 <script lang="ts">
   import { Date } from 'svelte/reactivity';
@@ -10,17 +20,19 @@
 <div>
   <Calendar.Root bind:value>
     <div>
-      <Calendar.Year />
+      <Calendar.Previous />
       <Calendar.Month />
+      <Calendar.Year />
+      <Calendar.Next />
     </div>
 
     <table>
       <thead>
         <tr>
           <Calendar.Weekdays>
-            {#snippet children(o)}
+            {#snippet children(weekday)}
               <th>
-                <Calendar.Weekday {...o} />
+                <Calendar.Weekday data={weekday} />
               </th>
             {/snippet}
           </Calendar.Weekdays>
@@ -29,12 +41,12 @@
 
       <tbody>
         <Calendar.Weeks>
-          {#snippet children(i)}
+          {#snippet children(week)}
             <tr>
-              <Calendar.Week {...i}>
-                {#snippet children(j)}
+              <Calendar.Week data={week}>
+                {#snippet children(date)}
                   <td>
-                    <Calendar.Date {...j} />
+                    <Calendar.Date data={date} />
                   </td>
                 {/snippet}
               </Calendar.Week>
