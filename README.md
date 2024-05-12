@@ -1,6 +1,6 @@
 ## Svelte Simple Calendar
 
-Calendar component for svelte
+Calendar component for svelte 5
 
 ## Installation
 
