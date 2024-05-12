@@ -1,5 +1,18 @@
 <script lang="ts">
-  interface Props {}
+  import type { Month } from '$lib/types.js';
+  import type { Snippet } from 'svelte';
+  import { getCalendarContext } from './context.svelte.js';
 
-  let { ...props }: Props = $props();
+  interface Props {
+    snippet?: Snippet<[context: Month]>;
+  }
+
+  let { snippet }: Props = $props();
+  let context = getCalendarContext();
 </script>
+
+{#if snippet}
+  {@render snippet(context.calendar.month)}
+{:else}
+  {context.calendar.month.slice(0, 3)}
+{/if}

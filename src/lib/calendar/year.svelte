@@ -1,5 +1,7 @@
 <script lang="ts">
-  interface Props {}
+  import { getCalendarContext } from './context.svelte.js';
 
-  let { ...props }: Props = $props();
+  let context = getCalendarContext();
 </script>
+
+{context.calendar.year}

@@ -6,14 +6,14 @@ import { isSameDay } from './is-same-day.js';
 import { isToday } from './is-today.js';
 import { startOfMonth } from './sart-of-month.js';
 import { subDays } from './sub-days.js';
-import type { CalendarDate, ICalendar, Weekday } from './types.js';
+import type { CalendarDate, ICalendar, Month, Weekday } from './types.js';
 
-interface CalendarConfig {
+export interface CreateCalendarConfig {
   weekStartsOn?: Weekday;
   disabledDates?: Date[] | ((date: Date) => boolean);
 }
 
-export function createCalendar(base: Date, config?: CalendarConfig): ICalendar {
+export function createCalendar(base: Date, config?: CreateCalendarConfig) {
   const days: CalendarDate[] = [];
 
   const monthTotalDays = getDaysInMonth(base);
@@ -87,15 +87,18 @@ export function createCalendar(base: Date, config?: CalendarConfig): ICalendar {
     }
   }
 
-  return {
+  const calendar: ICalendar = {
     year: base.getFullYear(),
-    month: base.getMonth(),
+    month: months[base.getMonth()],
     weeks: chunk(days, 7),
-    days: [
+    weekdays: [
+      /**/
       ...weekdays.slice(weekStartsOnIndex),
       ...weekdays.slice(0, weekStartsOnIndex),
     ],
   };
+
+  return calendar;
 }
 
 const weekdays: Weekday[] = [
@@ -106,4 +109,19 @@ const weekdays: Weekday[] = [
   'Thursday',
   'Friday',
   'Saturday',
+];
+
+const months: Month[] = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ];

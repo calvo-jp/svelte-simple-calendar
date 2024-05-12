@@ -7,6 +7,20 @@ export type Weekday =
   | 'Friday'
   | 'Saturday';
 
+export type Month =
+  | 'January'
+  | 'February'
+  | 'March'
+  | 'April'
+  | 'May'
+  | 'June'
+  | 'July'
+  | 'August'
+  | 'September'
+  | 'October'
+  | 'November'
+  | 'December';
+
 export interface CalendarDate {
   value: Date;
   isToday: boolean;
@@ -20,9 +34,9 @@ export type Week = CalendarDate[];
 
 export interface ICalendar {
   year: number;
-  month: number;
+  month: Month;
   weeks: Week[];
-  days: string[];
+  weekdays: Weekday[];
 }
 
 export interface DateRange {

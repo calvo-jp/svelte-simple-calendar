@@ -1,11 +1,20 @@
 <script lang="ts">
-  import type { Snippet } from 'svelte';
+  import { type Snippet } from 'svelte';
+  import {
+    createCalendarContext,
+    setCalendarContext,
+    type CreateCalendarContextProps,
+    type CreateCalendarContextReturn,
+  } from './context.svelte.js';
 
-  interface Props {
-    children: Snippet<[context: any]>;
+  interface Props extends CreateCalendarContextProps {
+    children: Snippet<[context: CreateCalendarContextReturn]>;
   }
 
-  let { children }: Props = $props();
+  let { value = $bindable(new Date()), children, ...props }: Props = $props();
+  let context = createCalendarContext({ value, ...props });
+
+  setCalendarContext(context);
 </script>
 
-{@render children({})}
+{@render children(context)}

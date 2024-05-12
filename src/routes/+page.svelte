@@ -5,17 +5,21 @@
 <div>
   <Calendar.Root>
     <div>
-      <Calendar.Year />
-      <Calendar.Month />
+      <Calendar.PreviousButton>Prev</Calendar.PreviousButton>
+      <div>
+        <Calendar.Month />
+        <Calendar.Year />
+      </div>
+      <Calendar.NextButton>Next</Calendar.NextButton>
     </div>
 
     <table>
       <thead>
         <tr>
           <Calendar.Weekdays>
-            {#snippet children(o)}
+            {#snippet children(weekday)}
               <th>
-                <Calendar.Weekday {...o} />
+                <Calendar.Weekday data={weekday} />
               </th>
             {/snippet}
           </Calendar.Weekdays>
@@ -24,12 +28,12 @@
 
       <tbody>
         <Calendar.Weeks>
-          {#snippet children(i)}
+          {#snippet children(week)}
             <tr>
-              <Calendar.Week {...i}>
-                {#snippet children(j)}
+              <Calendar.Week data={week}>
+                {#snippet children(date)}
                   <td>
-                    <Calendar.Date {...j} />
+                    <Calendar.Date data={date} />
                   </td>
                 {/snippet}
               </Calendar.Week>
@@ -40,4 +44,3 @@
     </table>
   </Calendar.Root>
 </div>
-```

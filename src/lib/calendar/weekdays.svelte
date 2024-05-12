@@ -1,11 +1,16 @@
 <script lang="ts">
+  import type { Weekday } from '$lib/types.js';
   import type { Snippet } from 'svelte';
+  import { getCalendarContext } from './context.svelte.js';
 
   interface Props {
-    children: Snippet<[context: any]>;
+    children: Snippet<[context: Weekday]>;
   }
 
-  let { children, ...props }: Props = $props();
+  let { children }: Props = $props();
+  let context = getCalendarContext();
 </script>
 
-{@render children({})}
+{#each context.calendar.weekdays as weekday}
+  {@render children(weekday)}
+{/each}

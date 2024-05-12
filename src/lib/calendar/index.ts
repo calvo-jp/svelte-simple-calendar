@@ -1,5 +1,7 @@
 export { default as Date } from './date.svelte';
 export { default as Month } from './month.svelte';
+export { default as NextButton } from './next-button.svelte';
+export { default as PreviousButton } from './previous-button.svelte';
 export { default as Root } from './root.svelte';
 export { default as Week } from './week.svelte';
 export { default as Weekday } from './weekday.svelte';
