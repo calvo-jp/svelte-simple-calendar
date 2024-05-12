@@ -43,6 +43,8 @@ export interface ICalendar {
   weekdays: Weekday[];
 }
 
+export type IRangeCalendar = [current: ICalendar, previous: ICalendar];
+
 export interface DateRange {
   from: Date;
   to: Date;
