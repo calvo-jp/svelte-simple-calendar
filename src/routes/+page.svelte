@@ -42,5 +42,9 @@
         </Calendar.Weeks>
       </tbody>
     </table>
+
+    <div>
+      <Calendar.Value />
+    </div>
   </Calendar.Root>
 </div>
