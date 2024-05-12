@@ -1,3 +1,5 @@
+export type Alias<T> = T & { _?: never };
+
 export type Weekday =
   | 'Sunday'
   | 'Monday'
@@ -21,7 +23,7 @@ export type Month =
   | 'November'
   | 'December';
 
-export type Year = number & { _?: never };
+export type Year = Alias<number>;
 
 export interface CalendarDate {
   value: Date;
