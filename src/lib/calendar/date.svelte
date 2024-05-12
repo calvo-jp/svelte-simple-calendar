@@ -10,7 +10,7 @@
 
   interface Props extends ButtonProps {
     data: CalendarDate;
-    children: Snippet<[context: CalendarDate & { isSelected: boolean }]>;
+    children?: Snippet<[context: CalendarDate & { isSelected: boolean }]>;
   }
 
   let { data, children, ...props }: Props = $props();
