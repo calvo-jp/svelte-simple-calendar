@@ -15,7 +15,7 @@
 
   let { data, children, ...props }: Props = $props();
   let context = getCalendarContext();
-  let isSelected = $derived(isSameDay(context.value, data.value));
+  let isSelected = $derived(!!context.value && isSameDay(context.value, data.value));
   let renderProps = $derived({ ...data, isSelected });
 </script>
 
