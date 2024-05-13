@@ -4,21 +4,21 @@ import { subMonths } from '$lib/sub-months.js';
 import { getContext, setContext } from 'svelte';
 
 export interface CreateCalendarContextProps extends CreateCalendarConfig {
-  value?: Date;
-  onChange?: (value: Date) => void;
+  value?: Date | null;
+  onChange?: (value: Date | null) => void;
 }
 
 export type CreateCalendarContextReturn = ReturnType<typeof createCalendarContext>;
 
 export function createCalendarContext(props?: CreateCalendarContextProps) {
-  let value = $state(props?.value ?? new Date());
+  let value: Date | null = $state(props?.value ?? null);
   let baseDate = $state(props?.value ?? new Date());
 
-  const onChange = $derived(function (newValue: Date) {
+  function onChange(newValue: Date | null) {
     value = newValue;
     props?.onChange?.(newValue);
-    baseDate = newValue;
-  });
+    baseDate = newValue ?? new Date();
+  }
 
   const calendar = $derived.by(() => {
     const disabledDates = props?.disabledDates ?? [];
@@ -38,6 +38,10 @@ export function createCalendarContext(props?: CreateCalendarContextProps) {
     baseDate = subMonths(baseDate, 1);
   }
 
+  function clear() {
+    onChange(null);
+  }
+
   return {
     get value() {
       return value;
@@ -51,6 +55,7 @@ export function createCalendarContext(props?: CreateCalendarContextProps) {
     },
     next,
     previous,
+    clear,
   };
 }
 
