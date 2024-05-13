@@ -62,7 +62,6 @@ npm install svelte-simple-calendar
       <Calendar.Value />
     </div>
   </Calendar.Root>
-</div>
 ```
 
 **RangeCalendar**
@@ -79,46 +78,52 @@ npm install svelte-simple-calendar
 
 <div>
   <RangeCalendar.Root bind:value>
-    <div>
-      <RangeCalendar.Previous />
-      <RangeCalendar.Month />
-      <RangeCalendar.Year />
-      <RangeCalendar.Next />
-    </div>
+    {#snippet children(calendar)}
+      <div>
+        <Calendar.Root {...calendar}>
+          <div>
+            <Calendar.Previous />
+            <Calendar.Month />
+            <Calendar.Year />
+            <Calendar.Next />
+          </div>
 
-    <table>
-      <thead>
-        <tr>
-          <RangeCalendar.Weekdays>
-            {#snippet children(weekday)}
-              <th>
-                <RangeCalendar.Weekday data={weekday} />
-              </th>
-            {/snippet}
-          </RangeCalendar.Weekdays>
-        </tr>
-      </thead>
+          <table>
+            <thead>
+              <tr>
+                <Calendar.Weekdays>
+                  {#snippet children(weekday)}
+                    <th>
+                      <Calendar.Weekday data={weekday} />
+                    </th>
+                  {/snippet}
+                </Calendar.Weekdays>
+              </tr>
+            </thead>
 
-      <tbody>
-        <RangeCalendar.Weeks>
-          {#snippet children(week)}
-            <tr>
-              <RangeCalendar.Week data={week}>
-                {#snippet children(date)}
-                  <td>
-                    <RangeCalendar.Date data={date} />
-                  </td>
+            <tbody>
+              <Calendar.Weeks>
+                {#snippet children(week)}
+                  <tr>
+                    <Calendar.Week data={week}>
+                      {#snippet children(date)}
+                        <td>
+                          <Calendar.Date data={date} />
+                        </td>
+                      {/snippet}
+                    </Calendar.Week>
+                  </tr>
                 {/snippet}
-              </RangeCalendar.Week>
-            </tr>
-          {/snippet}
-        </RangeCalendar.Weeks>
-      </tbody>
-    </table>
+              </Calendar.Weeks>
+            </tbody>
+          </table>
 
-    <div>
-      <RangeCalendar.Value />
-    </div>
+          <div>
+            <Calendar.Value />
+          </div>
+        </Calendar.Root>
+      </div>
+    {/snippet}
   </RangeCalendar.Root>
 </div>
 ```
