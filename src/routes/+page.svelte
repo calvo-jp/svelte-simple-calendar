@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { cn } from '$lib/cn.js';
   import { Calendar } from '$lib/index.js';
 </script>
 
@@ -42,7 +43,7 @@
     </div>
 
     <div class="p-3">
-      <table class="border-collapse">
+      <table class="border-collapse text-sm">
         <thead>
           <tr>
             <Calendar.Weekdays>
@@ -66,7 +67,20 @@
                     <td>
                       <Calendar.Date
                         data={date}
-                        class="size-10 flex items-center justify-center data-today:bg-gray-100 data-selected:bg-blue-500 data-selected:text-white rounded-full data-placeholder:text-gray-400 data-placeholder:bg-white"
+                        class={cn(
+                          'size-10',
+                          'flex',
+                          'items-center',
+                          'justify-center',
+                          'rounded-full',
+                          'data-today:bg-gray-100',
+                          'data-selected:bg-blue-500',
+                          'data-selected:text-white',
+                          'data-selected:font-semibold',
+                          'data-placeholder:text-gray-400',
+                          'data-placeholder:bg-white',
+                          'data-placeholder:font-normal',
+                        )}
                       />
                     </td>
                   {/snippet}

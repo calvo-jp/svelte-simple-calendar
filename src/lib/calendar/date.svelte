@@ -25,6 +25,7 @@
     context.onChange?.(data.value);
   }}
   disabled={data.isDisabled}
+  data-disabled={dataAttr(data.isDisabled)}
   data-selected={dataAttr(isSelected)}
   data-today={dataAttr(data.isToday)}
   data-placeholder={dataAttr(data.isPlaceholder)}
