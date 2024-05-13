@@ -61,10 +61,10 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
 }
 
 export function setCalendarContext(context: CreateRangeCalendarContextReturn) {
-  setContext('range-calendar', context);
+  setContext('calendar', context);
 }
 
 export function getCalendarContext() {
-  const context = getContext<CreateRangeCalendarContextReturn>('range-calendar');
+  const context = getContext<CreateRangeCalendarContextReturn>('calendar');
   return context;
 }
