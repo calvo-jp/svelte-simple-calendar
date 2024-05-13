@@ -66,7 +66,7 @@
                     <td>
                       <Calendar.Date
                         data={date}
-                        class="size-10 flex items-center justify-center data-today:bg-gray-100 data-selected:bg-blue-500 data-selected:text-white rounded-full data-placeholder:text-gray-400"
+                        class="size-10 flex items-center justify-center data-today:bg-gray-100 data-selected:bg-blue-500 data-selected:text-white rounded-full data-placeholder:text-gray-400 data-placeholder:bg-white"
                       />
                     </td>
                   {/snippet}

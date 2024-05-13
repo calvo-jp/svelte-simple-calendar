@@ -11,7 +11,7 @@
     children: Snippet<[context: CreateCalendarContextReturn]>;
   }
 
-  let { value = $bindable(new Date()), children, ...props }: Props = $props();
+  let { value = $bindable(null), children, ...props }: Props = $props();
   let context = createCalendarContext({ value, ...props });
 
   setCalendarContext(context);
