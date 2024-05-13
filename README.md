@@ -10,6 +10,8 @@ npm install svelte-simple-calendar
 
 ## Usage
 
+**Calendar**
+
 ```svelte
 <script lang="ts">
   import { Date } from 'svelte/reactivity';
@@ -60,5 +62,63 @@ npm install svelte-simple-calendar
       <Calendar.Value />
     </div>
   </Calendar.Root>
+</div>
+```
+
+**RangeCalendar**
+
+```svelte
+<script lang="ts">
+  import { Date } from 'svelte/reactivity';
+
+  let value = $state({
+    from: subDays(7),
+    to: new Date(), 7,
+  });
+</script>
+
+<div>
+  <RangeCalendar.Root bind:value>
+    <div>
+      <RangeCalendar.Previous />
+      <RangeCalendar.Month />
+      <RangeCalendar.Year />
+      <RangeCalendar.Next />
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <RangeCalendar.Weekdays>
+            {#snippet children(weekday)}
+              <th>
+                <RangeCalendar.Weekday data={weekday} />
+              </th>
+            {/snippet}
+          </RangeCalendar.Weekdays>
+        </tr>
+      </thead>
+
+      <tbody>
+        <RangeCalendar.Weeks>
+          {#snippet children(week)}
+            <tr>
+              <RangeCalendar.Week data={week}>
+                {#snippet children(date)}
+                  <td>
+                    <RangeCalendar.Date data={date} />
+                  </td>
+                {/snippet}
+              </RangeCalendar.Week>
+            </tr>
+          {/snippet}
+        </RangeCalendar.Weeks>
+      </tbody>
+    </table>
+
+    <div>
+      <RangeCalendar.Value />
+    </div>
+  </RangeCalendar.Root>
 </div>
 ```
