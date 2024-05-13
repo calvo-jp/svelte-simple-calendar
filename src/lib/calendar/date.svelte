@@ -22,7 +22,7 @@
 <button
   type="button"
   onclick={() => {
-    context.onChange?.(data.value);
+    context.value = data.value;
   }}
   disabled={data.isDisabled}
   data-disabled={dataAttr(data.isDisabled)}
