@@ -22,14 +22,14 @@ npm install svelte-simple-calendar
 <div>
   <Calendar.Root bind:value>
     <div>
-      <Calendar.Previous>
+      <Calendar.PreviousButton>
         <ChevronLeftIcon />
-      </Calendar.Previous>
+      </Calendar.PreviousButton>
       <Calendar.Month />
       <Calendar.Year />
-      <Calendar.Next>
+      <Calendar.NextButton>
         <ChevronRightIcon />
-      </Calendar.Next>
+      </Calendar.NextButton>
     </div>
 
     <table>
@@ -64,6 +64,7 @@ npm install svelte-simple-calendar
 
     <div>
       <Calendar.Value />
+      <Calendar.ClearButton />
     </div>
   </Calendar.Root>
 ```
