@@ -22,14 +22,14 @@ npm install svelte-simple-calendar
 <div>
   <Calendar.Root bind:value>
     <div>
-      <Calendar.PreviousButton>
+      <Calendar.PreviousMonthButton>
         <ChevronLeftIcon />
-      </Calendar.PreviousButton>
+      </Calendar.PreviousMonthButton>
       <Calendar.Month />
       <Calendar.Year />
-      <Calendar.NextButton>
+      <Calendar.NextMonthButton>
         <ChevronRightIcon />
-      </Calendar.NextButton>
+      </Calendar.NextMonthButton>
     </div>
 
     <table>
@@ -61,11 +61,6 @@ npm install svelte-simple-calendar
         </Calendar.Weeks>
       </tbody>
     </table>
-
-    <div>
-      <Calendar.Value />
-      <Calendar.ClearButton />
-    </div>
   </Calendar.Root>
 </div>
 ```
@@ -85,49 +80,48 @@ npm install svelte-simple-calendar
 <div>
   <RangeCalendar.Root bind:value>
     <div>
-      <RangeCalendar.PreviousButton>
-        <ChevronLeftIcon />
-      </RangeCalendar.PreviousButton>
-      <RangeCalendar.Month />
-      <RangeCalendar.Year />
-      <RangeCalendar.NextButton>
-        <ChevronRightIcon />
-      </RangeCalendar.NextButton>
-    </div>
+      <Calendar.Root>
+        <div>
+          <Calendar.PreviousMonthButton>
+            <ChevronLeftIcon />
+          </Calendar.PreviousMonthButton>
+          <Calendar.Month />
+          <Calendar.Year />
+          <Calendar.NextMonthButton>
+            <ChevronRightIcon />
+          </Calendar.NextMonthButton>
+        </div>
 
-    <table>
-      <thead>
-        <tr>
-          <RangeCalendar.Weekdays>
-            {#snippet children(weekday)}
-              <th>
-                <RangeCalendar.Weekday data={weekday} />
-              </th>
-            {/snippet}
-          </RangeCalendar.Weekdays>
-        </tr>
-      </thead>
-
-      <tbody>
-        <RangeCalendar.Weeks>
-          {#snippet children(week)}
+        <table>
+          <thead>
             <tr>
-              <RangeCalendar.Week data={week}>
-                {#snippet children(date)}
-                  <td>
-                    <RangeCalendar.Date data={date} />
-                  </td>
+              <Calendar.Weekdays>
+                {#snippet children(weekday)}
+                  <th>
+                    <Calendar.Weekday data={weekday} />
+                  </th>
                 {/snippet}
-              </RangeCalendar.Week>
+              </Calendar.Weekdays>
             </tr>
-          {/snippet}
-        </RangeCalendar.Weeks>
-      </tbody>
-    </table>
+          </thead>
 
-    <div>
-      <RangeCalendar.Value />
-      <RangeCalendar.ClearButton />
+          <tbody>
+            <Calendar.Weeks>
+              {#snippet children(week)}
+                <tr>
+                  <Calendar.Week data={week}>
+                    {#snippet children(date)}
+                      <td>
+                        <Calendar.Date data={date} />
+                      </td>
+                    {/snippet}
+                  </Calendar.Week>
+                </tr>
+              {/snippet}
+            </Calendar.Weeks>
+          </tbody>
+        </table>
+      </Calendar.Root>
     </div>
   </RangeCalendar.Root>
 </div>

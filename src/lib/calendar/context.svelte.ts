@@ -5,7 +5,7 @@ import { getContext, setContext } from 'svelte';
 
 export interface CreateCalendarContextProps extends CreateCalendarConfig {
   value?: Date | null;
-  onChange?: (value: Date | null) => void;
+  onChange?: (value: Date) => void;
 }
 
 export type CreateCalendarContextReturn = ReturnType<typeof createCalendarContext>;
@@ -14,7 +14,7 @@ export function createCalendarContext(props?: CreateCalendarContextProps) {
   let value: Date | null = $state(props?.value ?? null);
   let baseDate = $state(props?.value ?? new Date());
 
-  function onChange(newValue: Date | null) {
+  function onChange(newValue: Date) {
     value = newValue;
     props?.onChange?.(newValue);
     baseDate = newValue ?? new Date();
@@ -30,16 +30,12 @@ export function createCalendarContext(props?: CreateCalendarContextProps) {
     });
   });
 
-  function next() {
+  function nextMonth() {
     baseDate = addMonths(baseDate, 1);
   }
 
-  function previous() {
+  function previousMonth() {
     baseDate = subMonths(baseDate, 1);
-  }
-
-  function clear() {
-    onChange(null);
   }
 
   return {
@@ -53,9 +49,8 @@ export function createCalendarContext(props?: CreateCalendarContextProps) {
     get calendar() {
       return calendar;
     },
-    next,
-    previous,
-    clear,
+    nextMonth,
+    previousMonth,
   };
 }
 
@@ -67,3 +62,5 @@ export function getCalendarContext() {
   const context = getContext<CreateCalendarContextReturn>('calendar');
   return context;
 }
+
+export function createRangeCalendarContext() {}
