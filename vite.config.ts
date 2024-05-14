@@ -8,6 +8,7 @@ export default defineConfig({
     port: 3000,
   },
   test: {
+    watch: false,
     include: ['src/**/*.{test,spec}.{js,ts}'],
   },
 });

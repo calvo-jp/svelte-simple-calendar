@@ -45,8 +45,7 @@ export interface ICalendar {
 
 export type IRangeCalendar = [current: ICalendar, previous: ICalendar];
 
-export interface DateRange {
-  from: Date;
-  to: Date;
-  dates: Date[];
+export interface Interval {
+  start: Date;
+  end: Date;
 }

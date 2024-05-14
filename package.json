@@ -1,18 +1,10 @@
 {
   "name": "svelte-simple-calendar",
+  "type": "module",
   "version": "0.0.1",
-  "scripts": {
-    "dev": "vite dev",
-    "build": "vite build && npm run package",
-    "preview": "vite preview",
-    "package": "svelte-kit sync && svelte-package && publint",
-    "prepublishOnly": "npm run package",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "test": "vitest",
-    "lint": "prettier --check . && eslint .",
-    "format": "prettier --write ."
-  },
+  "license": "MIT",
+  "svelte": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -24,8 +16,32 @@
     "!dist/**/*.test.*",
     "!dist/**/*.spec.*"
   ],
-  "peerDependencies": {
-    "svelte": ">=5.0.0"
+  "description": "Calendar component for Svelte/SvelteKit",
+  "keywords": [
+    "Svelte",
+    "SvelteKit",
+    "Calendar",
+    "Component"
+  ],
+  "repository": "https://github.com/calvo-jp/svelte-simple-calendar",
+  "bugs": {
+    "url": "https://github.com/calvo-jp/svelte-simple-calendar/issues"
+  },
+  "author": {
+    "name": "John Paul Calvo",
+    "email": "calvojp92@gmail.com"
+  },
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build && npm run package",
+    "preview": "vite preview",
+    "package": "svelte-kit sync && svelte-package && publint",
+    "prepublishOnly": "npm run package",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "test": "vitest",
+    "lint": "prettier --check . && eslint .",
+    "format": "prettier --write ."
   },
   "devDependencies": {
     "@sveltejs/adapter-vercel": "5.3.0",
@@ -44,6 +60,7 @@
     "prettier": "3.2.5",
     "prettier-plugin-svelte": "3.2.3",
     "publint": "0.2.7",
+    "release-it": "17.2.1",
     "svelte": "5.0.0-next.130",
     "svelte-check": "3.7.1",
     "tailwindcss": "3.4.3",
@@ -52,7 +69,24 @@
     "vite": "5.2.11",
     "vitest": "1.6.0"
   },
-  "svelte": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "type": "module"
+  "peerDependencies": {
+    "svelte": ">=5.0.0"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${npm.name} v${version}",
+      "tagName": "${npm.name}@${version}"
+    },
+    "github": {
+      "release": false
+    },
+    "hooks": {
+      "before:init": [
+        "pnpm check"
+      ],
+      "after:bump": [
+        "pnpm package"
+      ]
+    }
+  }
 }
