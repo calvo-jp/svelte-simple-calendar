@@ -9,6 +9,8 @@ export default defineConfig({
   },
   test: {
     watch: false,
+    globals: true,
     include: ['src/**/*.{test,spec}.{js,ts}'],
+    passWithNoTests: true,
   },
 });
