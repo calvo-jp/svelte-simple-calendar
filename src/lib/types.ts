@@ -43,8 +43,6 @@ export interface ICalendar {
   weekdays: Weekday[];
 }
 
-export type IRangeCalendar = [current: ICalendar, previous: ICalendar];
-
 export interface Interval {
   start: Date;
   end: Date;

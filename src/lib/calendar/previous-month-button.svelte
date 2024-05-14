@@ -11,7 +11,7 @@
 <button
   type="button"
   onclick={(e) => {
-    context.previous();
+    context.previousMonth();
     onclick?.(e);
   }}
   {...props}

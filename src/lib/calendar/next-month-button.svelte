@@ -11,7 +11,7 @@
 <button
   type="button"
   onclick={(e) => {
-    context.next();
+    context.nextMonth();
     onclick?.(e);
   }}
   {...props}
