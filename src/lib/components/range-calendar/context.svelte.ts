@@ -44,8 +44,8 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
     newValue = newValue.slice(0, 2);
 
     const shouldKeepView = [
-      ...calendars[0].days,
-      ...(props?.numOfMonths === 2 ? calendars[1].days : []),
+      ...calendars[0].dates,
+      ...(props?.numOfMonths === 2 ? calendars[1].dates : []),
     ].some((obj) => {
       if (obj.isPlaceholder) {
         return false;
