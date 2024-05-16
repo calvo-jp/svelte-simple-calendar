@@ -16,10 +16,14 @@
   let context = createRangeCalendarContext({ value, ...props });
 
   setRangeCalendarContext(context);
+
+  let currentCalendar = $derived(context.calendars[0]);
+  let previousCalendar = $derived(context.calendars[1]);
 </script>
 
-{#each context.calendars.toReversed() as calendar}
-  <ContextProvider {calendar}>
-    {@render children(context)}
-  </ContextProvider>
-{/each}
+<ContextProvider data={previousCalendar}>
+  {@render children(context)}
+</ContextProvider>
+<ContextProvider data={currentCalendar}>
+  {@render children(context)}
+</ContextProvider>

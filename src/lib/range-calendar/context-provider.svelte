@@ -4,13 +4,13 @@
   import { setCalendarContext } from './context.svelte.js';
 
   interface Props {
-    calendar: ICalendar;
+    data: ICalendar;
     children: Snippet;
   }
 
-  let { calendar, children }: Props = $props();
+  let { data, children }: Props = $props();
 
-  setCalendarContext(calendar);
+  setCalendarContext(data);
 </script>
 
 {@render children()}
