@@ -21,9 +21,12 @@
   let previousCalendar = $derived(context.calendars[1]);
 </script>
 
-<ContextProvider data={previousCalendar}>
-  {@render children(context)}
-</ContextProvider>
+{#if props.numOfMonths === 2}
+  <ContextProvider data={previousCalendar}>
+    {@render children(context)}
+  </ContextProvider>
+{/if}
+
 <ContextProvider data={currentCalendar}>
   {@render children(context)}
 </ContextProvider>

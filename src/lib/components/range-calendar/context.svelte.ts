@@ -10,6 +10,7 @@ export interface CreateRangeCalendarContextProps extends CreateCalendarConfig {
   max?: number;
   value?: Interval | null;
   onChange?: (value: Interval) => void;
+  numOfMonths?: 1 | 2;
 }
 
 export type CreateRangeCalendarContextReturn = ReturnType<typeof createRangeCalendarContext>;
