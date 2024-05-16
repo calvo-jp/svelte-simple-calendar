@@ -46,17 +46,17 @@ export function createRangeCalendarContext(props: CreateRangeCalendarContextProp
 }
 
 export function setRangeCalendarContext(context: CreateRangeCalendarContextReturn) {
-  setContext('calendar/range', context);
+  setContext('calendar-range', context);
 }
 
 export function getRangeCalendarContext() {
-  return getContext<CreateRangeCalendarContextReturn>('calendar/range');
+  return getContext<CreateRangeCalendarContextReturn>('calendar-range');
 }
 
 export function setCalendarContext(calendar: ICalendar) {
-  setContext('calendar/range/calendar', calendar);
+  setContext('calendar-range--calendar', calendar);
 }
 
 export function getCalendarContext() {
-  return getContext<ICalendar>('calendar/range/calendar');
+  return getContext<ICalendar>('calendar-range--calendar');
 }

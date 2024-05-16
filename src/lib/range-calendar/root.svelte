@@ -18,7 +18,7 @@
   setRangeCalendarContext(context);
 </script>
 
-{#each context.calendars as calendar}
+{#each context.calendars.toReversed() as calendar}
   <ContextProvider {calendar}>
     {@render children(context)}
   </ContextProvider>
