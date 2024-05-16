@@ -8,11 +8,11 @@
   }
 
   let { snippet }: Props = $props();
-  let calendar = getCalendarContext();
+  let context = getCalendarContext();
 </script>
 
 {#if snippet}
-  {@render snippet(calendar.month)}
+  {@render snippet(context.calendar.month)}
 {:else}
-  {calendar.month.slice(0, 3)}
+  {context.calendar.month.slice(0, 3)}
 {/if}

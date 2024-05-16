@@ -10,7 +10,11 @@
 
   let { data, children }: Props = $props();
 
-  setCalendarContext(data);
+  setCalendarContext({
+    get calendar() {
+      return data;
+    },
+  });
 </script>
 
 {@render children()}

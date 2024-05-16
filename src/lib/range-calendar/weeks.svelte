@@ -8,9 +8,9 @@
   }
 
   let { children }: Props = $props();
-  let calendar = getCalendarContext();
+  let context = getCalendarContext();
 </script>
 
-{#each calendar.weeks as week}
+{#each context.calendar.weeks as week}
   {@render children(week)}
 {/each}

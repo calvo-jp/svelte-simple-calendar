@@ -8,11 +8,11 @@
   }
 
   let { children }: Props = $props();
-  let calendar = getCalendarContext();
+  let context = getCalendarContext();
 </script>
 
 {#if children}
-  {@render children(calendar.year)}
+  {@render children(context.calendar.year)}
 {:else}
-  {calendar.year}
+  {context.calendar.year}
 {/if}

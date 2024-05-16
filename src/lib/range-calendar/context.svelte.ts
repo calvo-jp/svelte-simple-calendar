@@ -55,10 +55,14 @@ export function getRangeCalendarContext() {
   return getContext<CreateRangeCalendarContextReturn>('calendar-range');
 }
 
-export function setCalendarContext(calendar: ICalendar) {
-  setContext('calendar-range--calendar', calendar);
+interface CalendarContext {
+  readonly calendar: ICalendar;
+}
+
+export function setCalendarContext(context: CalendarContext) {
+  setContext('calendar-range--calendar', context);
 }
 
 export function getCalendarContext() {
-  return getContext<ICalendar>('calendar-range--calendar');
+  return getContext<CalendarContext>('calendar-range--calendar');
 }
