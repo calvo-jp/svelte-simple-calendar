@@ -21,12 +21,10 @@ export function createRangeCalendarContext(props: CreateRangeCalendarContextProp
   ]);
 
   function nextMonth() {
-    console.log(addMonths(baseDate, 1));
     baseDate = addMonths(baseDate, 1);
   }
 
   function previousMonth() {
-    console.log(subMonths(baseDate, 1));
     baseDate = subMonths(baseDate, 1);
   }
 
