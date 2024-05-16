@@ -1,6 +1,7 @@
 import type { CalendarDate, ICalendar, Month, Weekday } from '$lib/types/index.js';
 import { addDays } from './add-days.js';
 import { chunk } from './chunk.js';
+import { createLruCache } from './create-lru-cache.js';
 import { endOfMonth } from './end-of-month.js';
 import { getDaysInMonth } from './get-days-in-month.js';
 import { isSameDay } from './is-same-day.js';
@@ -15,6 +16,17 @@ export interface CreateCalendarConfig {
 }
 
 export function createCalendar(base: Date, config?: CreateCalendarConfig) {
+  const cacheKey = JSON.stringify({
+    base,
+    config,
+  });
+
+  let calendar = cache.get(cacheKey);
+
+  if (calendar) {
+    return calendar;
+  }
+
   const dates: CalendarDate[] = [];
 
   const monthTotalDays = getDaysInMonth(base);
@@ -88,7 +100,7 @@ export function createCalendar(base: Date, config?: CreateCalendarConfig) {
     }
   }
 
-  const calendar: ICalendar = {
+  calendar = {
     year: base.getFullYear(),
     month: months[base.getMonth()],
     weeks: chunk(dates, 7),
@@ -100,8 +112,12 @@ export function createCalendar(base: Date, config?: CreateCalendarConfig) {
     dates,
   };
 
+  cache.set(cacheKey, calendar);
+
   return calendar;
 }
+
+const cache = createLruCache<string, ICalendar>(512);
 
 const weekdays: Weekday[] = [
   'Sunday',
