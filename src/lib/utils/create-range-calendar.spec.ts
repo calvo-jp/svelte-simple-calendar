@@ -11,7 +11,7 @@ test('createRangeCalendar', () => {
       month: expect.any(String),
       weeks: expect.any(Array),
       weekdays: expect.any(Array),
-      days: expect.any(Array),
+      dates: expect.any(Array),
     }),
   );
   expect(calendars[1]).toEqual(
@@ -20,7 +20,7 @@ test('createRangeCalendar', () => {
       month: expect.any(String),
       weeks: expect.any(Array),
       weekdays: expect.any(Array),
-      days: expect.any(Array),
+      dates: expect.any(Array),
     }),
   );
 });

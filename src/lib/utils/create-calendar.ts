@@ -15,7 +15,7 @@ export interface CreateCalendarConfig {
 }
 
 export function createCalendar(base: Date, config?: CreateCalendarConfig) {
-  const days: CalendarDate[] = [];
+  const dates: CalendarDate[] = [];
 
   const monthTotalDays = getDaysInMonth(base);
   const monthFirstDay = startOfMonth(base);
@@ -34,7 +34,7 @@ export function createCalendar(base: Date, config?: CreateCalendarConfig) {
   for (let i = 0; i < monthTotalDays; ++i) {
     const value = addDays(monthFirstDay, i);
 
-    days.push({
+    dates.push({
       value,
       isToday: isToday(value),
       isDisabled: checkDisabled(value),
@@ -57,7 +57,7 @@ export function createCalendar(base: Date, config?: CreateCalendarConfig) {
     for (let i = 1; i <= diff; ++i) {
       const value = subDays(monthFirstDay, i);
 
-      days.unshift({
+      dates.unshift({
         value,
         isToday: false,
         isDisabled: checkDisabled(value),
@@ -71,13 +71,13 @@ export function createCalendar(base: Date, config?: CreateCalendarConfig) {
   /*
    * Fill the rest of the calendar with days from next month
    */
-  if (days.length < 42) {
-    const diff = 42 - days.length;
+  if (dates.length < 42) {
+    const diff = 42 - dates.length;
 
     for (let i = 1; i <= diff; ++i) {
       const value = addDays(monthLastDay, i);
 
-      days.push({
+      dates.push({
         value,
         isToday: false,
         isDisabled: checkDisabled(value),
@@ -89,15 +89,15 @@ export function createCalendar(base: Date, config?: CreateCalendarConfig) {
   }
 
   const calendar: ICalendar = {
-    days,
     year: base.getFullYear(),
     month: months[base.getMonth()],
-    weeks: chunk(days, 7),
+    weeks: chunk(dates, 7),
     weekdays: [
       /**/
       ...weekdays.slice(weekStartsOnIndex),
       ...weekdays.slice(0, weekStartsOnIndex),
     ],
+    dates,
   };
 
   return calendar;
