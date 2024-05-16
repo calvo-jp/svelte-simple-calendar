@@ -5,6 +5,8 @@ import type { ICalendar, Interval } from '$lib/types.js';
 import { getContext, setContext } from 'svelte';
 
 export interface CreateRangeCalendarContextProps extends CreateCalendarConfig {
+  min?: number;
+  max?: number;
   value?: Interval | null;
   onChange?: (value: Interval) => void;
 }
@@ -28,6 +30,10 @@ export function createRangeCalendarContext(props: CreateRangeCalendarContextProp
     baseDate = subMonths(baseDate, 1);
   }
 
+  function pick(...values: Date[]) {
+    /* TODO */
+  }
+
   return {
     get value() {
       return value;
@@ -42,6 +48,7 @@ export function createRangeCalendarContext(props: CreateRangeCalendarContextProp
     },
     nextMonth,
     previousMonth,
+    pick,
   };
 }
 

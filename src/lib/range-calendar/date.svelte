@@ -37,7 +37,9 @@
 
 <button
   type="button"
-  onclick={() => {}}
+  onclick={() => {
+    context.pick(data.value);
+  }}
   disabled={data.isDisabled}
   data-disabled={dataAttr(data.isDisabled)}
   data-selected={dataAttr(isSelected)}
