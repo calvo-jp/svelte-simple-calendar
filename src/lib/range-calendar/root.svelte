@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
+  import ContextProvider from './context-provider.svelte';
   import {
     createRangeCalendarContext,
     setRangeCalendarContext,
@@ -17,4 +18,8 @@
   setRangeCalendarContext(context);
 </script>
 
-{@render children(context)}
+{#each context.calendars as calendar}
+  <ContextProvider data={calendar}>
+    {@render children(context)}
+  </ContextProvider>
+{/each}

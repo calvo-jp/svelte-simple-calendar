@@ -46,8 +46,5 @@ export function setCalendarContext(context: CreateCalendarContextReturn) {
 }
 
 export function getCalendarContext() {
-  const context = getContext<CreateCalendarContextReturn>('calendar');
-  return context;
+  return getContext<CreateCalendarContextReturn>('calendar');
 }
-
-export function createRangeCalendarContext() {}
