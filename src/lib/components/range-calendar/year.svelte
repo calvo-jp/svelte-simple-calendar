@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Year } from '$lib/types.js';
+  import type { Year } from '$lib/types/index.js';
   import type { Snippet } from 'svelte';
   import { getCalendarContext } from './context.svelte.js';
 

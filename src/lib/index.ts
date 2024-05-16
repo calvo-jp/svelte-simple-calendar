@@ -1,2 +1,2 @@
-export * as Calendar from './calendar/index.js';
-export * as RangeCalendar from './range-calendar/index.js';
+export * as Calendar from './components/calendar/index.js';
+export * as RangeCalendar from './components/range-calendar/index.js';

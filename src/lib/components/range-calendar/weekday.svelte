@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Weekday } from '$lib/types.js';
+  import type { Weekday } from '$lib/types/index.js';
   import type { Snippet } from 'svelte';
 
   interface Props {

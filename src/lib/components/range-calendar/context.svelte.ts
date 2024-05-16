@@ -1,8 +1,8 @@
-import { addMonths } from '$lib/add-months.js';
-import { compareAsc } from '$lib/compare-asc.js';
-import { createCalendar, type CreateCalendarConfig } from '$lib/create-calendar.js';
-import { subMonths } from '$lib/sub-months.js';
-import type { ICalendar, Interval } from '$lib/types.js';
+import type { ICalendar, Interval } from '$lib/types/index.js';
+import { addMonths } from '$lib/utils/add-months.js';
+import { compareAsc } from '$lib/utils/compare-asc.js';
+import { createCalendar, type CreateCalendarConfig } from '$lib/utils/create-calendar.js';
+import { subMonths } from '$lib/utils/sub-months.js';
 import { getContext, setContext } from 'svelte';
 
 export interface CreateRangeCalendarContextProps extends CreateCalendarConfig {

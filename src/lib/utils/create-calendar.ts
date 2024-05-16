@@ -1,3 +1,4 @@
+import type { CalendarDate, ICalendar, Month, Weekday } from '$lib/types/index.js';
 import { addDays } from './add-days.js';
 import { chunk } from './chunk.js';
 import { endOfMonth } from './end-of-month.js';
@@ -6,7 +7,6 @@ import { isSameDay } from './is-same-day.js';
 import { isToday } from './is-today.js';
 import { startOfMonth } from './start-of-month.js';
 import { subDays } from './sub-days.js';
-import type { CalendarDate, ICalendar, Month, Weekday } from './types.js';
 
 export interface CreateCalendarConfig {
   timezone?: string;

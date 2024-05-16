@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { dataAttr } from '$lib/data-attr.js';
-  import { isSameDay } from '$lib/is-same-day.js';
-  import { isWithinInterval } from '$lib/is-within-interval.js';
-  import type { CalendarDate } from '$lib/types.js';
+  import type { CalendarDate } from '$lib/types/index.js';
+  import { dataAttr } from '$lib/utils/data-attr.js';
+  import { isSameDay } from '$lib/utils/is-same-day.js';
+  import { isWithinInterval } from '$lib/utils/is-within-interval.js';
   import type { Snippet } from 'svelte';
   import type { SvelteHTMLElements } from 'svelte/elements';
   import { getRangeCalendarContext } from './context.svelte.js';

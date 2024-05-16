@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { cn } from '$lib/cn.js';
   import { RangeCalendar } from '$lib/index.js';
+  import { cn } from '../cn.js';
 </script>
 
 <div class="flex border border-gray-200 w-fit">

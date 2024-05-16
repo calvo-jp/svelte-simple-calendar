@@ -1,5 +1,5 @@
+import type { Interval } from '$lib/types/index.js';
 import { cloneDate } from './clone-date.js';
-import type { Interval } from './types.js';
 
 export function isWithinInterval(date: Date, interval: Interval) {
   const time = cloneDate(date).getTime();
