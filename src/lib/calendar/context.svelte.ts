@@ -11,8 +11,8 @@ export interface CreateCalendarContextProps extends CreateCalendarConfig {
 export type CreateCalendarContextReturn = ReturnType<typeof createCalendarContext>;
 
 export function createCalendarContext(props?: CreateCalendarContextProps) {
-  let value = $state(props?.value ?? null);
-  let baseDate = $state(props?.value ?? new Date());
+  let value = $state.frozen(props?.value ?? null);
+  let baseDate = $state.frozen(props?.value ?? new Date());
 
   const calendar = $derived.by(() => createCalendar(baseDate, props));
 
