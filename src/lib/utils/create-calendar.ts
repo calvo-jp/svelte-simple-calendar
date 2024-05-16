@@ -89,6 +89,7 @@ export function createCalendar(base: Date, config?: CreateCalendarConfig) {
   }
 
   const calendar: ICalendar = {
+    days,
     year: base.getFullYear(),
     month: months[base.getMonth()],
     weeks: chunk(days, 7),

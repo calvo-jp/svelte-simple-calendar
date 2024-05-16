@@ -12,8 +12,19 @@
     children: Snippet<[context: CreateRangeCalendarContextReturn]>;
   }
 
-  let { value = $bindable(null), children, ...props }: Props = $props();
-  let context = createRangeCalendarContext({ value, ...props });
+  let {
+    /**/
+    value = $bindable(null),
+    numOfMonths = 2,
+    children,
+    ...props
+  }: Props = $props();
+
+  let context = createRangeCalendarContext({
+    value,
+    numOfMonths,
+    ...props,
+  });
 
   setRangeCalendarContext(context);
 
@@ -21,7 +32,7 @@
   let previousCalendar = $derived(context.calendars[1]);
 </script>
 
-{#if props.numOfMonths === 2}
+{#if numOfMonths === 2}
   <ContextProvider data={previousCalendar}>
     {@render children(context)}
   </ContextProvider>

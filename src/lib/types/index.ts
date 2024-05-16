@@ -41,6 +41,7 @@ export interface ICalendar {
   month: Month;
   weeks: Week[];
   weekdays: Weekday[];
+  days: CalendarDate[];
 }
 
 export interface Interval {

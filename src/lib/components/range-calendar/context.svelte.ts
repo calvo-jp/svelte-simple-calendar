@@ -2,6 +2,7 @@ import type { ICalendar, Interval } from '$lib/types/index.js';
 import { addMonths } from '$lib/utils/add-months.js';
 import { compareAsc } from '$lib/utils/compare-asc.js';
 import { createCalendar, type CreateCalendarConfig } from '$lib/utils/create-calendar.js';
+import { isSameDay } from '$lib/utils/is-same-day.js';
 import { subMonths } from '$lib/utils/sub-months.js';
 import { getContext, setContext } from 'svelte';
 
@@ -23,22 +24,12 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
   );
 
   const value: { [K in keyof Interval]: Interval[K] | null } = $derived.by(() => {
-    if (picked.length <= 0) {
-      return {
-        start: null,
-        end: null,
-      };
-    } else if (picked.length >= 2) {
-      return {
-        start: picked[0],
-        end: picked[1],
-      };
-    } else {
-      return {
-        start: picked[0],
-        end: null,
-      };
-    }
+    const l = picked.toSorted(compareAsc);
+
+    return {
+      start: l.at(0) ?? null,
+      end: l.at(1) ?? null,
+    };
   });
 
   const calendars: [current: ICalendar, previous: ICalendar] = $derived.by(() => [
@@ -46,22 +37,36 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
     createCalendar(subMonths(baseDate, 1), props),
   ]);
 
-  function pick(...dates: Date[]) {
-    if (dates.length <= 0) return;
+  function pick(date: Date) {
+    let newValue: Date[];
 
-    dates = dates.length >= 2 ? dates.sort(compareAsc) : dates;
-    dates = [...dates, ...picked].slice(0, 2);
-    picked = dates;
+    newValue = [date, ...picked];
+    newValue = newValue.slice(0, 2);
 
-    /** TODO */
-    const shouldReloadView = false;
+    picked = newValue;
 
-    if (shouldReloadView) {
-      baseDate = dates[dates.length - 1];
+    const shouldChangeView = ![
+      ...calendars[0].days,
+      ...(props?.numOfMonths === 2 ? calendars[1].days : []),
+    ].some((obj) => {
+      if (obj.isPlaceholder) {
+        return false;
+      } else {
+        return isSameDay(obj.value, date);
+      }
+    });
+
+    if (shouldChangeView) {
+      baseDate = date;
     }
 
-    if (dates.length >= 2) {
-      props?.onChange?.({ start: dates[0], end: dates[1] });
+    if (newValue.length >= 2) {
+      const l = [...newValue].toSorted(compareAsc);
+
+      props?.onChange?.({
+        start: l[0],
+        end: l[1],
+      });
     }
   }
 
