@@ -21,9 +21,12 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
     props?.value ? [props.value.start, props.value.end].sort(compareAsc) : [],
   );
 
-  const value: Partial<Interval> | null = $derived.by(() => {
+  const value: { [K in keyof Interval]: Interval[K] | null } = $derived.by(() => {
     if (picked.length <= 0) {
-      return {};
+      return {
+        start: null,
+        end: null,
+      };
     } else if (picked.length >= 2) {
       return {
         start: picked[0],
@@ -32,6 +35,7 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
     } else {
       return {
         start: picked[0],
+        end: null,
       };
     }
   });
@@ -41,14 +45,23 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
     createCalendar(subMonths(baseDate, 1), props),
   ]);
 
-  function pick(...values: Date[]) {
-    if (values.length <= 0) return;
+  function pick(...dates: Date[]) {
+    if (dates.length <= 0) return;
 
-    values = values.length >= 2 ? values.sort(compareAsc) : values;
-    values = [...values, ...picked].slice(0, 2);
+    dates = dates.length >= 2 ? dates.sort(compareAsc) : dates;
+    dates = [...dates, ...picked].slice(0, 2);
+    picked = dates;
 
-    picked = values;
-    baseDate = values[values.length - 1];
+    /** TODO */
+    const shouldReloadView = false;
+
+    if (shouldReloadView) {
+      baseDate = dates[dates.length - 1];
+    }
+
+    if (dates.length >= 2) {
+      props?.onChange?.({ start: dates[0], end: dates[1] });
+    }
   }
 
   function nextMonth() {
