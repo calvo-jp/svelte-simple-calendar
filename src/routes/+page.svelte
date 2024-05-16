@@ -3,9 +3,9 @@
   import { cn } from './cn.js';
 </script>
 
-<div class="border border-gray-200 w-fit">
+<div class="w-fit border border-gray-200">
   <Calendar.Root>
-    <div class="flex border-b border-gray-200 gap-2 px-3 py-4">
+    <div class="flex gap-2 border-b border-gray-200 px-3 py-4">
       <Calendar.PreviousMonthButton>
         <svg
           width="24"
@@ -21,7 +21,7 @@
           <path d="M15 18L9 12L15 6"></path>
         </svg>
       </Calendar.PreviousMonthButton>
-      <div class="grow flex items-center justify-center">
+      <div class="flex grow items-center justify-center">
         <Calendar.Month />
         <Calendar.Year />
       </div>
@@ -49,7 +49,7 @@
             <Calendar.Weekdays>
               {#snippet children(weekday)}
                 <th>
-                  <div class="size-10 flex items-center justify-center font-semibold">
+                  <div class="flex size-10 items-center justify-center font-semibold">
                     <Calendar.Weekday data={weekday} />
                   </div>
                 </th>
