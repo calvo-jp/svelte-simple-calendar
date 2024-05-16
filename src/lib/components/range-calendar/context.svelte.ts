@@ -45,7 +45,7 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
 
     picked = newValue;
 
-    const shouldChangeView = ![
+    const shouldKeepView = [
       ...calendars[0].days,
       ...(props?.numOfMonths === 2 ? calendars[1].days : []),
     ].some((obj) => {
@@ -56,7 +56,7 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
       }
     });
 
-    if (shouldChangeView) {
+    if (!shouldKeepView) {
       baseDate = date;
     }
 
