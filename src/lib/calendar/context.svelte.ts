@@ -24,6 +24,10 @@ export function createCalendarContext(props?: CreateCalendarContextProps) {
     baseDate = subMonths(baseDate, 1);
   }
 
+  $effect(() => {
+    console.log(calendar);
+  });
+
   return {
     get value() {
       return value;
