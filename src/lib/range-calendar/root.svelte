@@ -19,7 +19,7 @@
 </script>
 
 {#each context.calendars as calendar}
-  <ContextProvider data={calendar}>
+  <ContextProvider {calendar}>
     {@render children(context)}
   </ContextProvider>
 {/each}
