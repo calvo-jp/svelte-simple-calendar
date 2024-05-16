@@ -13,8 +13,12 @@ npm install svelte-simple-calendar
 **Calendar**
 
 ```svelte
+<script>
+  let value = $state(new Date());
+</script>
+
 <div>
-  <Calendar.Root>
+  <Calendar.Root bind:value>
     <div>
       <Calendar.PreviousMonthButton>
         <ChevronLeftIcon />
@@ -62,8 +66,15 @@ npm install svelte-simple-calendar
 **RangeCalendar**
 
 ```svelte
+<script>
+  let value = $state({
+    start: new Date(),
+    end: new Date(),
+  });
+</script>
+
 <div>
-  <RangeCalendar.Root>
+  <RangeCalendar.Root bind:value>
     <div>
       <div>
         <RangeCalendar.PreviousMonthButton>
