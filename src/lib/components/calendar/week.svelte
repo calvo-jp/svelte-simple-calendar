@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { CalendarDate, Week } from '$lib/types.js';
+  import type { CalendarDate, Week } from '$lib/types/index.js';
   import type { Snippet } from 'svelte';
 
   interface Props {
