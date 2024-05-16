@@ -17,22 +17,22 @@ export interface CreateRangeCalendarContextProps extends CreateCalendarConfig {
 export type CreateRangeCalendarContextReturn = ReturnType<typeof createRangeCalendarContext>;
 
 export function createRangeCalendarContext(props?: CreateRangeCalendarContextProps) {
-  let baseDate = $state.frozen(props?.value?.end ?? new Date());
+  let baseDate = $state(props?.value?.end ?? new Date());
 
   let picked = $state.frozen(
     props?.value ? [props.value.start, props.value.end].sort(compareAsc) : [],
   );
 
-  const value: { [K in keyof Interval]: Interval[K] | null } = $derived.by(() => {
+  const value: Partial<Interval> = $derived.by(() => {
     const l = picked.toSorted(compareAsc);
 
     return {
-      start: l.at(0) ?? null,
-      end: l.at(1) ?? null,
+      start: l.at(0),
+      end: l.at(1),
     };
   });
 
-  const calendars: [current: ICalendar, previous: ICalendar] = $derived.by(() => [
+  const calendars: [current: ICalendar, previous: ICalendar] = $derived([
     createCalendar(baseDate, props),
     createCalendar(subMonths(baseDate, 1), props),
   ]);
@@ -42,8 +42,6 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
 
     newValue = [date, ...picked];
     newValue = newValue.slice(0, 2);
-
-    picked = newValue;
 
     const shouldKeepView = [
       ...calendars[0].days,
@@ -61,13 +59,15 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
     }
 
     if (newValue.length >= 2) {
-      const l = [...newValue].toSorted(compareAsc);
+      const l = newValue.toSorted(compareAsc);
 
       props?.onChange?.({
         start: l[0],
         end: l[1],
       });
     }
+
+    picked = newValue;
   }
 
   function nextMonth() {
