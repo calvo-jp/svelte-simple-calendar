@@ -9,6 +9,7 @@ import { subDays } from './sub-days.js';
 import type { CalendarDate, ICalendar, Month, Weekday } from './types.js';
 
 export interface CreateCalendarConfig {
+  timezone?: string;
   weekStartsOn?: Weekday;
   disabledDates?: Date[] | ((date: Date) => boolean);
 }

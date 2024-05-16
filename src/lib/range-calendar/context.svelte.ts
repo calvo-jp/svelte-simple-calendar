@@ -15,16 +15,10 @@ export function createRangeCalendarContext(props: CreateRangeCalendarContextProp
   let value = $state(props?.value ?? null);
   let baseDate = $state(props?.value?.end ?? new Date());
 
-  const calendars: [current: ICalendar, previous: ICalendar] = $derived.by(() => {
-    const config: CreateCalendarConfig = {
-      disabledDates: props.disabledDates ?? [],
-      weekStartsOn: props.weekStartsOn ?? 'Sunday',
-    };
-
-    const previousMonth = subMonths(baseDate, 1);
-
-    return [createCalendar(baseDate, config), createCalendar(previousMonth, config)];
-  });
+  const calendars: [current: ICalendar, previous: ICalendar] = $derived.by(() => [
+    createCalendar(baseDate, props),
+    createCalendar(subMonths(baseDate, 1), props),
+  ]);
 
   function nextMonth() {
     baseDate = addMonths(baseDate, 1);

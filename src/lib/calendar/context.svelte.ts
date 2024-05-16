@@ -14,15 +14,7 @@ export function createCalendarContext(props?: CreateCalendarContextProps) {
   let value = $state(props?.value ?? null);
   let baseDate = $state(props?.value ?? new Date());
 
-  const calendar = $derived.by(() => {
-    const disabledDates = props?.disabledDates ?? [];
-    const weekStartsOn = props?.weekStartsOn ?? 'Sunday';
-
-    return createCalendar(baseDate, {
-      disabledDates,
-      weekStartsOn,
-    });
-  });
+  const calendar = $derived.by(() => createCalendar(baseDate, props));
 
   function nextMonth() {
     baseDate = addMonths(baseDate, 1);
