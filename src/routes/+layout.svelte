@@ -15,25 +15,48 @@
       path: '/range-calendar',
       label: 'RangeCalendar',
     },
+    {
+      path: '/date-picker',
+      label: 'DatePicker',
+      future: true,
+    },
+    {
+      path: '/range-date-picker',
+      label: 'RangeDatePicker',
+      future: true,
+    },
   ];
 
   $inspect($page.url.pathname);
 </script>
 
 <div class="flex min-h-dvh">
-  <header class="p-16">
+  <header class="shrink-0 p-16">
     <nav>
       <ul class="space-y-2">
         {#each links as link}
+          {@const active = !link.future && $page.url.pathname === link.path}
+
           <li>
             <a
-              href={link.path}
+              href={link.future ? null : link.path}
               class={cn(
-                'font-mono transition-colors duration-200',
-                $page.url.pathname === link.path ? 'text-blue-700' : 'text-gray-700',
+                'flex',
+                'items-center',
+                'justify-between',
+                'gap-8',
+                'font-mono',
+                'transition-colors',
+                'duration-200',
+                active && 'text-blue-700',
+                !active && 'text-gray-700',
               )}
             >
-              {link.label}
+              <span class={cn(link.future && 'text-gray-400')}>{link.label}</span>
+
+              {#if link.future}
+                <span class="text-xs text-blue-500">Coming soon</span>
+              {/if}
             </a>
           </li>
         {/each}
