@@ -80,6 +80,9 @@ npm install svelte-simple-calendar
       console.log(value);
       console.log(valueAsArray);
     }}
+    disabledDates={function (date) {
+      return date.getDate() > 5 && date.getDate() < 15;
+    }}
   >
     <div>
       <div>
