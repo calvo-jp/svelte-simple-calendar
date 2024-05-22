@@ -9,10 +9,6 @@
       console.log({ value });
       console.log({ valueAsArray });
     }}
-    disabledDates={(date) => {
-      const d = date.getDate();
-      return d > 3 && d < 9;
-    }}
   >
     <div class="border-gray-200 first:border-r">
       <div class="flex gap-2 border-b border-gray-200 px-3 py-4">
