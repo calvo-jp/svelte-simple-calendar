@@ -1,16 +1,16 @@
 import type { ICalendar, Interval } from '$lib/types/index.js';
 import { addMonths } from '$lib/utils/add-months.js';
+import { cloneDate } from '$lib/utils/clone-date.js';
 import { compareAsc } from '$lib/utils/compare-asc.js';
 import { createCalendar, type CreateCalendarConfig } from '$lib/utils/create-calendar.js';
+import { differenceInDays } from '$lib/utils/difference-in-days.js';
 import { isSameDay } from '$lib/utils/is-same-day.js';
 import { subMonths } from '$lib/utils/sub-months.js';
 import { getContext, setContext } from 'svelte';
 
 export interface CreateRangeCalendarContextProps extends CreateCalendarConfig {
-  min?: number;
-  max?: number;
   value?: Interval | null;
-  onChange?: (value: Interval) => void;
+  onChange?: (value: Interval, valueAsArray: Date[]) => void;
   numOfMonths?: 1 | 2;
 }
 
@@ -22,6 +22,27 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
   let picked = $state.frozen(
     props?.value ? [props.value.start, props.value.end].sort(compareAsc) : [],
   );
+
+  function checkDisabled(date: Date) {
+    if (!props?.disabledDates) {
+      return false;
+    }
+
+    if (Array.isArray(props.disabledDates)) {
+      return props.disabledDates.some((d) => isSameDay(d, date));
+    }
+
+    return props.disabledDates(date);
+  }
+
+  function onChange(newValue: Interval) {
+    picked = [newValue.start, newValue.end];
+    baseDate = newValue.end;
+    props?.onChange?.(
+      newValue,
+      intervalToArray(newValue).filter((v) => !checkDisabled(v)),
+    );
+  }
 
   const value: Partial<Interval> = $derived.by(() => {
     const l = picked.toSorted(compareAsc);
@@ -60,11 +81,15 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
 
     if (newValue.length >= 2) {
       const l = newValue.toSorted(compareAsc);
-
-      props?.onChange?.({
+      const v = {
         start: l[0],
         end: l[1],
-      });
+      };
+
+      props?.onChange?.(
+        v,
+        intervalToArray(v).filter((v) => !checkDisabled(v)),
+      );
     }
 
     picked = newValue;
@@ -82,11 +107,7 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
     get value() {
       return value;
     },
-    onChange(newValue: Interval) {
-      picked = [newValue.start, newValue.end];
-      props?.onChange?.(newValue);
-      baseDate = newValue?.end ?? new Date();
-    },
+    onChange,
     get calendars() {
       return calendars;
     },
@@ -114,4 +135,22 @@ export function setCalendarContext(context: CalendarContext) {
 
 export function getCalendarContext() {
   return getContext<CalendarContext>('calendar-range--calendar');
+}
+
+function intervalToArray(interval: Interval) {
+  const l: Date[] = [];
+  const i = differenceInDays(interval.start, interval.end);
+
+  let j = 0;
+
+  for (; j <= i; j++) {
+    const d = cloneDate(interval.start);
+
+    d.setHours(0, 0, 0, 0);
+    d.setDate(d.getDate() + j);
+
+    l.push(d);
+  }
+
+  return l;
 }

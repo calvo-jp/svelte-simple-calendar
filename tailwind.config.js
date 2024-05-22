@@ -11,6 +11,7 @@ export default {
       data: {
         today: 'today',
         selected: 'selected',
+        disabled: 'disabled',
         placeholder: 'placeholder',
       },
     },

@@ -20,14 +20,14 @@ npm install svelte-simple-calendar
 <div>
   <Calendar.Root bind:value>
     <div>
-      <Calendar.PreviousMonthButton>
+      <Calendar.PreviousMonthTrigger>
         <ChevronLeftIcon />
-      </Calendar.PreviousMonthButton>
+      </Calendar.PreviousMonthTrigger>
       <Calendar.Month />
       <Calendar.Year />
-      <Calendar.NextMonthButton>
+      <Calendar.NextMonthTrigger>
         <ChevronRightIcon />
-      </Calendar.NextMonthButton>
+      </Calendar.NextMonthTrigger>
     </div>
 
     <table>
@@ -77,14 +77,14 @@ npm install svelte-simple-calendar
   <RangeCalendar.Root bind:value>
     <div>
       <div>
-        <RangeCalendar.PreviousMonthButton>
+        <RangeCalendar.PreviousMonthTrigger>
           <ChevronLeftIcon />
-        </RangeCalendar.PreviousMonthButton>
+        </RangeCalendar.PreviousMonthTrigger>
         <RangeCalendar.Month />
         <RangeCalendar.Year />
-        <RangeCalendar.NextMonthButton>
+        <RangeCalendar.NextMonthTrigger>
           <ChevronRightIcon />
-        </RangeCalendar.NextMonthButton>
+        </RangeCalendar.NextMonthTrigger>
       </div>
 
       <table>
