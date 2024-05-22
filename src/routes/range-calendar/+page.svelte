@@ -4,7 +4,16 @@
 </script>
 
 <div class="flex w-fit border border-gray-200">
-  <RangeCalendar.Root>
+  <RangeCalendar.Root
+    onChange={(value, valueAsArray) => {
+      console.log(value);
+      console.log(valueAsArray);
+    }}
+    disabledDates={(date) => {
+      const d = date.getDate();
+      return d > 3 && d < 9;
+    }}
+  >
     <div class="border-gray-200 first:border-r">
       <div class="flex gap-2 border-b border-gray-200 px-3 py-4">
         <RangeCalendar.PreviousMonthTrigger>
@@ -81,6 +90,10 @@
                             'data-placeholder:text-gray-400',
                             'data-placeholder:bg-white',
                             'data-placeholder:font-normal',
+
+                            'data-disabled:bg-white',
+                            'data-disabled:text-gray-400',
+                            'data-disabled:cursor-not-allowed',
                           )}
                         />
                       </td>
