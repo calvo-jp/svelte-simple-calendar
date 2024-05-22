@@ -74,7 +74,13 @@ npm install svelte-simple-calendar
 </script>
 
 <div>
-  <RangeCalendar.Root bind:value>
+  <RangeCalendar.Root
+    bind:value
+    onChange={function (value, valueAsArray) {
+      console.log(value);
+      console.log(valueAsArray);
+    }}
+  >
     <div>
       <div>
         <RangeCalendar.PreviousMonthTrigger>
