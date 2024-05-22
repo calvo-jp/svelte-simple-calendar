@@ -93,6 +93,7 @@
 
                             'data-disabled:bg-white',
                             'data-disabled:text-gray-400',
+                            'data-disabled:font-normal',
                             'data-disabled:cursor-not-allowed',
                           )}
                         />
