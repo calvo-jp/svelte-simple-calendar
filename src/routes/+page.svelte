@@ -6,7 +6,7 @@
 <div class="w-fit border border-gray-200">
   <Calendar.Root>
     <div class="flex gap-2 border-b border-gray-200 px-3 py-4">
-      <Calendar.PreviousMonthButton>
+      <Calendar.PreviousMonthTrigger>
         <svg
           width="24"
           height="24"
@@ -20,12 +20,12 @@
         >
           <path d="M15 18L9 12L15 6"></path>
         </svg>
-      </Calendar.PreviousMonthButton>
+      </Calendar.PreviousMonthTrigger>
       <div class="flex grow items-center justify-center">
         <Calendar.Month />
         <Calendar.Year />
       </div>
-      <Calendar.NextMonthButton>
+      <Calendar.NextMonthTrigger>
         <svg
           width="24"
           height="24"
@@ -39,7 +39,7 @@
         >
           <path d="M9 18L15 12L9 6"></path>
         </svg>
-      </Calendar.NextMonthButton>
+      </Calendar.NextMonthTrigger>
     </div>
 
     <div class="p-3">

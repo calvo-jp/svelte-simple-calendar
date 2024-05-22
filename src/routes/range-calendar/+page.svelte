@@ -7,7 +7,7 @@
   <RangeCalendar.Root>
     <div class="border-gray-200 first:border-r">
       <div class="flex gap-2 border-b border-gray-200 px-3 py-4">
-        <RangeCalendar.PreviousMonthButton>
+        <RangeCalendar.PreviousMonthTrigger>
           <svg
             width="24"
             height="24"
@@ -21,12 +21,12 @@
           >
             <path d="M15 18L9 12L15 6"></path>
           </svg>
-        </RangeCalendar.PreviousMonthButton>
+        </RangeCalendar.PreviousMonthTrigger>
         <div class="flex grow items-center justify-center">
           <RangeCalendar.Month />
           <RangeCalendar.Year />
         </div>
-        <RangeCalendar.NextMonthButton>
+        <RangeCalendar.NextMonthTrigger>
           <svg
             width="24"
             height="24"
@@ -40,7 +40,7 @@
           >
             <path d="M9 18L15 12L9 6"></path>
           </svg>
-        </RangeCalendar.NextMonthButton>
+        </RangeCalendar.NextMonthTrigger>
       </div>
 
       <div class="p-3">
