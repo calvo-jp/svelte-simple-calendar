@@ -1,7 +1,7 @@
 {
   "name": "svelte-simple-calendar",
   "type": "module",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "license": "MIT",
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
