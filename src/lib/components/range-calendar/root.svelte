@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
-  import ContextProvider from './context-provider.svelte';
+  import CalendarProvider from './calendar-provider.svelte';
   import {
     createRangeCalendarContext,
     setRangeCalendarContext,
@@ -33,11 +33,11 @@
 </script>
 
 {#if numOfMonths === 2}
-  <ContextProvider data={previousCalendar}>
+  <CalendarProvider data={previousCalendar}>
     {@render children(context)}
-  </ContextProvider>
+  </CalendarProvider>
 {/if}
 
-<ContextProvider data={currentCalendar}>
+<CalendarProvider data={currentCalendar}>
   {@render children(context)}
-</ContextProvider>
+</CalendarProvider>
