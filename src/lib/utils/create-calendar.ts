@@ -10,7 +10,6 @@ import { startOfMonth } from './start-of-month.js';
 import { subDays } from './sub-days.js';
 
 export interface CreateCalendarConfig {
-  timezone?: string;
   weekStartsOn?: Weekday;
   disabledDates?: Date[] | ((date: Date) => boolean);
 }
