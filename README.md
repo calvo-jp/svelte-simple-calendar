@@ -1,4 +1,4 @@
-## Svelte Simple Calendar
+## [WIP] Svelte Simple Calendar
 
 Calendar component for svelte 5
 
