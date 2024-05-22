@@ -6,8 +6,8 @@
 <div class="flex w-fit border border-gray-200">
   <RangeCalendar.Root
     onChange={(value, valueAsArray) => {
-      console.log(value);
-      console.log(valueAsArray);
+      console.log({ value });
+      console.log({ valueAsArray });
     }}
     disabledDates={(date) => {
       const d = date.getDate();
