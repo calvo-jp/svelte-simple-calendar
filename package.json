@@ -44,9 +44,6 @@
     "format": "prettier --write .",
     "release": "release-it"
   },
-  "dependencies": {
-    "@floating-ui/dom": "1.6.5"
-  },
   "devDependencies": {
     "@sveltejs/adapter-vercel": "5.3.0",
     "@sveltejs/enhanced-img": "0.2.0",
@@ -75,13 +72,7 @@
     "vitest": "1.6.0"
   },
   "peerDependencies": {
-    "svelte": ">=5.0.0",
-    "@floating-ui/dom": ">=1.6.0"
-  },
-  "peerDependenciesMeta": {
-    "@floating-ui/dom": {
-      "optional": true
-    }
+    "svelte": ">=5.0.0"
   },
   "release-it": {
     "git": {
