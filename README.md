@@ -129,3 +129,11 @@ npm install svelte-simple-calendar
   </RangeCalendar.Root>
 </div>
 ```
+
+**DatePicker**
+
+_coming soon_
+
+**RangeDatePicker**
+
+_coming soon_
