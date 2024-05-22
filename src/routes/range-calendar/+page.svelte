@@ -3,6 +3,10 @@
   import { cn } from '../cn.js';
 </script>
 
+<svelte:head>
+  <title>RangeCalendar | svelte-simple-calendar</title>
+</svelte:head>
+
 <div class="flex w-fit border border-gray-200">
   <RangeCalendar.Root
     onChange={(value, valueAsArray) => {

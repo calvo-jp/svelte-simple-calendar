@@ -3,6 +3,10 @@
   import { cn } from './cn.js';
 </script>
 
+<svelte:head>
+  <title>Calendar | svelte-simple-calendar</title>
+</svelte:head>
+
 <div class="w-fit border border-gray-200">
   <Calendar.Root>
     <div class="flex gap-2 border-b border-gray-200 px-3 py-4">
