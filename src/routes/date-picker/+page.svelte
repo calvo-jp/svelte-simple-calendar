@@ -1,9 +1,10 @@
 <script lang="ts">
   import {DatePicker} from '$lib/index.js';
+  import {cn} from '../cn.js';
 </script>
 
 <svelte:head>
-  <title>DatePicker | Svelte Simple Calendar</title>
+  <title>DatePicker | Svelte Simple DatePicker</title>
 </svelte:head>
 
 <DatePicker.Root>
@@ -15,9 +16,9 @@
   </DatePicker.Control>
 
   <DatePicker.Content>
-    <DatePicker.Calendar>
-      <div>
-        <div>
+    <div class="w-fit border border-gray-200">
+      <DatePicker.Calendar>
+        <div class="flex gap-2 border-b border-gray-200 px-3 py-4">
           <DatePicker.PreviousMonthTrigger>
             <svg
               width="24"
@@ -33,8 +34,10 @@
               <path d="M15 18L9 12L15 6"></path>
             </svg>
           </DatePicker.PreviousMonthTrigger>
-          <DatePicker.Month />
-          <DatePicker.Year />
+          <div class="flex grow items-center justify-center">
+            <DatePicker.Month />
+            <DatePicker.Year />
+          </div>
           <DatePicker.NextMonthTrigger>
             <svg
               width="24"
@@ -52,36 +55,58 @@
           </DatePicker.NextMonthTrigger>
         </div>
 
-        <table>
-          <thead>
-            <tr>
-              <DatePicker.Weekdays>
-                {#snippet children(weekday)}
-                  <th>
-                    <DatePicker.Weekday data={weekday} />
-                  </th>
-                {/snippet}
-              </DatePicker.Weekdays>
-            </tr>
-          </thead>
+        <div class="p-3">
+          <table class="border-collapse text-sm">
+            <thead>
+              <tr>
+                <DatePicker.Weekdays>
+                  {#snippet children(weekday)}
+                    <th>
+                      <div
+                        class="flex size-10 items-center justify-center font-semibold"
+                      >
+                        <DatePicker.Weekday data={weekday} />
+                      </div>
+                    </th>
+                  {/snippet}
+                </DatePicker.Weekdays>
+              </tr>
+            </thead>
 
-          <tbody>
-            <DatePicker.Weeks>
-              {#snippet children(week)}
-                <tr>
-                  <DatePicker.Week data={week}>
-                    {#snippet children(date)}
-                      <td>
-                        <DatePicker.Date data={date} />
-                      </td>
-                    {/snippet}
-                  </DatePicker.Week>
-                </tr>
-              {/snippet}
-            </DatePicker.Weeks>
-          </tbody>
-        </table>
-      </div>
-    </DatePicker.Calendar>
+            <tbody>
+              <DatePicker.Weeks>
+                {#snippet children(week)}
+                  <tr>
+                    <DatePicker.Week data={week}>
+                      {#snippet children(date)}
+                        <td>
+                          <DatePicker.Date
+                            data={date}
+                            class={cn(
+                              'size-10',
+                              'flex',
+                              'items-center',
+                              'justify-center',
+                              'rounded-full',
+                              'data-today:bg-gray-100',
+                              'data-selected:bg-blue-500',
+                              'data-selected:text-white',
+                              'data-selected:font-semibold',
+                              'data-placeholder:text-gray-400',
+                              'data-placeholder:bg-white',
+                              'data-placeholder:font-normal',
+                            )}
+                          />
+                        </td>
+                      {/snippet}
+                    </DatePicker.Week>
+                  </tr>
+                {/snippet}
+              </DatePicker.Weeks>
+            </tbody>
+          </table>
+        </div>
+      </DatePicker.Calendar>
+    </div>
   </DatePicker.Content>
 </DatePicker.Root>

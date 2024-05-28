@@ -24,8 +24,6 @@
       label: 'RangeDatePicker',
     },
   ];
-
-  $inspect($page.url.pathname);
 </script>
 
 <div class="flex min-h-dvh">
