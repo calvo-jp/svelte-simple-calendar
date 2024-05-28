@@ -149,8 +149,30 @@ export function createPopper(props?: CreatePopperProps) {
     set open(value: boolean) {
       open = value;
     },
+    /**
+     * @example
+     * ```svelte
+     *  <button use:reference>Click</button>
+     * ```
+     */
     reference,
+    /**
+     * @example
+     * ```svelte
+     *  <div use:floating>
+     *    ...
+     *  </div>
+     * ```
+     */
     floating,
+    /**
+     * @example
+     * ```svelte
+     *  <div use:floating>
+     *    <div use:arrow style="--arrow-size: 24px;"></div>
+     *  </div>
+     * ```
+     */
     arrow,
   };
 }
