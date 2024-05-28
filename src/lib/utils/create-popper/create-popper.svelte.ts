@@ -9,44 +9,39 @@ import {
   type Side,
   type Strategy,
 } from '@floating-ui/dom';
-import {dismiss, type DismissConfig} from './dismiss.js';
 
-export interface CreatePopperConfig extends DismissConfig {
+export interface CreatePopperProps {
+  /**
+   * @default false
+   */
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
+  /**
+   * @default 'absolute'
+   */
   strategy?: Strategy;
+  /**
+   * @default 'bottom'
+   */
   placement?: Placement;
+  /**
+   * @default true
+   */
+  closeOnEscape?: boolean;
+  /**
+   * @default true
+   */
+  closeOnOutsideClick?: boolean;
 }
 
-export function createPopper(props?: CreatePopperConfig) {
+export type CreatePopperReturn = ReturnType<typeof createPopper>;
+
+export function createPopper(props?: CreatePopperProps) {
   let referenceEl: HTMLElement | null = $state(null);
   let floatingEl: HTMLElement | null = $state(null);
   let arrowEl: HTMLElement | null = $state(null);
 
   let open = $state(props?.open ?? false);
-
-  $effect(() => {
-    function handle(e: Event) {
-      e.preventDefault();
-
-      const nextOpen = !open;
-
-      if (nextOpen) {
-        floatingEl?.focus();
-      } else {
-        referenceEl?.focus();
-      }
-
-      props?.onOpenChange?.(nextOpen);
-      open = nextOpen;
-    }
-
-    referenceEl?.addEventListener('click', handle);
-
-    return () => {
-      referenceEl?.removeEventListener('click', handle);
-    };
-  });
 
   $effect(() => {
     if (!floatingEl) return;
@@ -71,14 +66,6 @@ export function createPopper(props?: CreatePopperConfig) {
                 }),
               ]
             : []),
-
-          dismiss({
-            closeOnEscape: props?.closeOnEscape,
-            closeOnOutsideClick: props?.closeOnOutsideClick,
-            onDismiss() {
-              open = false;
-            },
-          }),
         ],
       }).then(({x, y, strategy, placement, middlewareData}) => {
         if (!floatingEl) return;
@@ -115,18 +102,23 @@ export function createPopper(props?: CreatePopperConfig) {
   });
 
   function reference(node: HTMLElement) {
+    function handle() {
+      open = !open;
+    }
+
     function update() {
       referenceEl = node;
+      node.addEventListener('click', handle);
+    }
+
+    function destroy() {
+      referenceEl = null;
+      node.removeEventListener('click', handle);
     }
 
     update();
 
-    return {
-      update,
-      destroy() {
-        referenceEl = null;
-      },
-    };
+    return {update, destroy};
   }
 
   function floating(node: HTMLElement) {
@@ -134,14 +126,13 @@ export function createPopper(props?: CreatePopperConfig) {
       floatingEl = node;
     }
 
+    function destroy() {
+      floatingEl = null;
+    }
+
     update();
 
-    return {
-      update,
-      destroy() {
-        floatingEl = null;
-      },
-    };
+    return {update, destroy};
   }
 
   function arrow(node: HTMLElement) {
@@ -149,14 +140,13 @@ export function createPopper(props?: CreatePopperConfig) {
       arrowEl = node;
     }
 
+    function destroy() {
+      arrowEl = null;
+    }
+
     update();
 
-    return {
-      update,
-      destroy() {
-        arrowEl = null;
-      },
-    };
+    return {update, destroy};
   }
 
   return {
@@ -166,14 +156,8 @@ export function createPopper(props?: CreatePopperConfig) {
     set open(value: boolean) {
       open = value;
     },
-    get reference() {
-      return reference;
-    },
-    get floating() {
-      return floating;
-    },
-    get arrow() {
-      return arrow;
-    },
+    reference,
+    floating,
+    arrow,
   };
 }
