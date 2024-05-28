@@ -119,7 +119,10 @@ export function createPopper(props?: CreatePopperProps) {
 
     update();
 
-    return {update, destroy};
+    return {
+      update,
+      destroy,
+    };
   }
 
   function floating(node: HTMLElement) {
@@ -133,7 +136,10 @@ export function createPopper(props?: CreatePopperProps) {
 
     update();
 
-    return {update, destroy};
+    return {
+      update,
+      destroy,
+    };
   }
 
   function arrow(node: HTMLElement) {
@@ -147,7 +153,10 @@ export function createPopper(props?: CreatePopperProps) {
 
     update();
 
-    return {update, destroy};
+    return {
+      update,
+      destroy,
+    };
   }
 
   return {
@@ -157,30 +166,8 @@ export function createPopper(props?: CreatePopperProps) {
     set open(value: boolean) {
       open = value;
     },
-    /**
-     * @example
-     * ```svelte
-     *  <button use:reference>Click</button>
-     * ```
-     */
     reference,
-    /**
-     * @example
-     * ```svelte
-     *  <div use:floating>
-     *    ...
-     *  </div>
-     * ```
-     */
     floating,
-    /**
-     * @example
-     * ```svelte
-     *  <div use:floating>
-     *    <div use:arrow style="--arrow-size: 24px;"></div>
-     *  </div>
-     * ```
-     */
     arrow,
   };
 }
