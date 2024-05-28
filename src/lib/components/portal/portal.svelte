@@ -9,6 +9,6 @@
   let {children}: Props = $props();
 </script>
 
-<div use:portal hidden>
+<div use:portal data-ssc-portal hidden>
   {@render children?.()}
 </div>

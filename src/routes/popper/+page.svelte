@@ -6,11 +6,17 @@
   let popper = createPopper();
 </script>
 
-<button use:popper.reference>Reference</button>
+<button
+  use:popper.reference
+  type="button"
+  class="h-12 w-40 border border-gray-300 px-3"
+>
+  Click me
+</button>
 
 <Portal>
   {#if popper.open}
-    <div use:popper.floating>
+    <div use:popper.floating class="z-tooltip">
       <div
         use:popper.arrow
         class={cn(
@@ -19,8 +25,8 @@
         )}
       ></div>
 
-      <div class="z-tooltip rounded-lg bg-gray-900 px-3 py-2 text-white">
-        Floating
+      <div class="rounded-lg bg-gray-900 px-3 py-2 text-white">
+        I'm a tooltip!
       </div>
     </div>
   {/if}

@@ -51,6 +51,11 @@ export function createPopper(props?: CreatePopperProps) {
 
   let open = $state(props?.open ?? false);
 
+  function setOpen(value: boolean) {
+    open = value;
+    props?.onOpenChange?.(value);
+  }
+
   $effect(() => {
     if (!floatingEl) return;
     if (!referenceEl) return;
@@ -104,7 +109,7 @@ export function createPopper(props?: CreatePopperProps) {
 
   function reference(node: HTMLElement) {
     function handle() {
-      open = !open;
+      setOpen(!open);
     }
 
     function update() {
@@ -163,9 +168,7 @@ export function createPopper(props?: CreatePopperProps) {
     get open() {
       return open;
     },
-    set open(value: boolean) {
-      open = value;
-    },
+    setOpen,
     reference,
     floating,
     arrow,
