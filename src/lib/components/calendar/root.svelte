@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { type Snippet } from 'svelte';
+  import {type Snippet} from 'svelte';
   import {
     createCalendarContext,
     setCalendarContext,
@@ -11,8 +11,8 @@
     children: Snippet<[context: CreateCalendarContextReturn]>;
   }
 
-  let { value = $bindable(null), children, ...props }: Props = $props();
-  let context = createCalendarContext({ value, ...props });
+  let {value = $bindable(null), children, ...props}: Props = $props();
+  let context = createCalendarContext({value, ...props});
 
   setCalendarContext(context);
 </script>

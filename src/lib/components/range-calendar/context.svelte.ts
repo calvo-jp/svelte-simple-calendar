@@ -1,12 +1,12 @@
-import type { ICalendar, Interval } from '$lib/types/index.js';
-import { addMonths } from '$lib/utils/add-months.js';
-import { cloneDate } from '$lib/utils/clone-date.js';
-import { compareAsc } from '$lib/utils/compare-asc.js';
-import { createCalendar, type CreateCalendarConfig } from '$lib/utils/create-calendar.js';
-import { differenceInDays } from '$lib/utils/difference-in-days.js';
-import { isSameDay } from '$lib/utils/is-same-day.js';
-import { subMonths } from '$lib/utils/sub-months.js';
-import { getContext, setContext } from 'svelte';
+import type {ICalendar, Interval} from '$lib/types/index.js';
+import {addMonths} from '$lib/utils/add-months.js';
+import {cloneDate} from '$lib/utils/clone-date.js';
+import {compareAsc} from '$lib/utils/compare-asc.js';
+import {createCalendar, type CreateCalendarConfig} from '$lib/utils/create-calendar.js';
+import {differenceInDays} from '$lib/utils/difference-in-days.js';
+import {isSameDay} from '$lib/utils/is-same-day.js';
+import {subMonths} from '$lib/utils/sub-months.js';
+import {getContext, setContext} from 'svelte';
 
 export interface CreateRangeCalendarContextProps extends CreateCalendarConfig {
   value?: Interval | null;
@@ -52,7 +52,7 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
     };
   });
 
-  const calendar= $derived(createCalendar(baseDate, props))
+  const calendar = $derived(createCalendar(baseDate, props));
 
   function pick(date: Date) {
     let newValue: Date[];
@@ -60,7 +60,7 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
     newValue = [date, ...picked];
     newValue = newValue.slice(0, 2);
 
-    const shouldKeepView =calendar.dates.some((obj) => {
+    const shouldKeepView = calendar.dates.some((obj) => {
       if (obj.isPlaceholder) {
         return false;
       } else {

@@ -1,20 +1,20 @@
 <script lang="ts">
-  import type { CalendarDate } from '$lib/types/index.js';
-  import { dataAttr } from '$lib/utils/data-attr.js';
-  import { isSameDay } from '$lib/utils/is-same-day.js';
-  import { isWithinInterval } from '$lib/utils/is-within-interval.js';
-  import type { Snippet } from 'svelte';
-  import type { SvelteHTMLElements } from 'svelte/elements';
-  import { getRangeCalendarContext } from './context.svelte.js';
+  import type {CalendarDate} from '$lib/types/index.js';
+  import {dataAttr} from '$lib/utils/data-attr.js';
+  import {isSameDay} from '$lib/utils/is-same-day.js';
+  import {isWithinInterval} from '$lib/utils/is-within-interval.js';
+  import type {Snippet} from 'svelte';
+  import type {SvelteHTMLElements} from 'svelte/elements';
+  import {getRangeCalendarContext} from './context.svelte.js';
 
   type ButtonProps = Omit<SvelteHTMLElements['button'], 'children'>;
 
   interface Props extends ButtonProps {
     data: CalendarDate;
-    children?: Snippet<[context: CalendarDate & { isSelected: boolean }]>;
+    children?: Snippet<[context: CalendarDate & {isSelected: boolean}]>;
   }
 
-  let { data, children, ...props }: Props = $props();
+  let {data, children, ...props}: Props = $props();
   let context = getRangeCalendarContext();
 
   let isStartDate = $derived(!!context.value.start && isSameDay(data.value, context.value.start));
@@ -29,7 +29,7 @@
     if (!start) return false;
     if (!end) return false;
 
-    return isWithinInterval(data.value, { start, end });
+    return isWithinInterval(data.value, {start, end});
   });
 
   let renderProps = $derived({

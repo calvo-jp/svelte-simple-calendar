@@ -1,7 +1,7 @@
-import { addMonths } from '$lib/utils/add-months.js';
-import { createCalendar, type CreateCalendarConfig } from '$lib/utils/create-calendar.js';
-import { subMonths } from '$lib/utils/sub-months.js';
-import { getContext, setContext } from 'svelte';
+import {addMonths} from '$lib/utils/add-months.js';
+import {createCalendar, type CreateCalendarConfig} from '$lib/utils/create-calendar.js';
+import {subMonths} from '$lib/utils/sub-months.js';
+import {getContext, setContext} from 'svelte';
 
 export interface CreateCalendarContextProps extends CreateCalendarConfig {
   value?: Date | null;

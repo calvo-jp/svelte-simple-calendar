@@ -1,4 +1,4 @@
-import { isWithinInterval } from './is-within-interval.js';
+import {isWithinInterval} from './is-within-interval.js';
 
 test('isWithinInterval', () => {
   const date = new Date(2021, 0, 1);

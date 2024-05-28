@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { RangeCalendar } from '$lib/index.js';
-  import { cn } from '../cn.js';
+  import {RangeCalendar} from '$lib/index.js';
+  import {cn} from '../cn.js';
 </script>
 
 <svelte:head>
@@ -10,8 +10,8 @@
 <div class="flex w-fit border border-gray-200">
   <RangeCalendar.Root
     onChange={(value, valueAsArray) => {
-      console.log({ value });
-      console.log({ valueAsArray });
+      console.log({value});
+      console.log({valueAsArray});
     }}
   >
     <div class="border-gray-200 first:border-r">

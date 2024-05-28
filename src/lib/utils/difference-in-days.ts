@@ -1,5 +1,5 @@
-import { cloneDate } from './clone-date.js';
-import { compareAsc } from './compare-asc.js';
+import {cloneDate} from './clone-date.js';
+import {compareAsc} from './compare-asc.js';
 
 export function differenceInDays(dateLeft: Date, dateRight: Date) {
   const clone0 = cloneDate(dateLeft);

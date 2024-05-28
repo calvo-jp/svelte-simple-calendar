@@ -1,4 +1,4 @@
-import { cloneDate } from './clone-date.js';
+import {cloneDate} from './clone-date.js';
 
 /** Is `date1` after `date2`? */
 export function compareAsc(date1: Date, date2: Date) {

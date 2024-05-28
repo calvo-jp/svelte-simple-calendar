@@ -1,4 +1,4 @@
-export type Alias<T> = T & { _?: never };
+export type Alias<T> = T & {_?: never};
 
 export type Weekday =
   | 'Sunday'

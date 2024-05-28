@@ -1,4 +1,4 @@
-import { isSameDay } from './is-same-day.js';
+import {isSameDay} from './is-same-day.js';
 
 test('isSameDay', () => {
   const date1 = new Date(2021, 0, 1);

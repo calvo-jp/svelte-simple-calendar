@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Calendar } from '$lib/index.js';
-  import { cn } from './cn.js';
+  import {Calendar} from '$lib/index.js';
+  import {cn} from './cn.js';
 </script>
 
 <svelte:head>

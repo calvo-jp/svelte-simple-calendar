@@ -1,4 +1,4 @@
-import { endOfMonth } from './end-of-month.js';
+import {endOfMonth} from './end-of-month.js';
 
 test('endOfMonth', () => {
   const date = new Date(2021, 0, 1);

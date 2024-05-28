@@ -1,4 +1,4 @@
-import { cloneDate } from './clone-date.js';
+import {cloneDate} from './clone-date.js';
 
 export function subMonths(date: Date, months: number) {
   const result = cloneDate(date);

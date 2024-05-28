@@ -1,10 +1,10 @@
 <script lang="ts">
   import '../app.css';
 
-  import { page } from '$app/stores';
-  import { cn } from './cn.js';
+  import {page} from '$app/stores';
+  import {cn} from './cn.js';
 
-  let { children } = $props();
+  let {children} = $props();
 
   const links = [
     {

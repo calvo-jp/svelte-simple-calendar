@@ -1,4 +1,4 @@
-import { cloneDate } from './clone-date.js';
+import {cloneDate} from './clone-date.js';
 
 test('cloneDate', () => {
   const date = new Date(2021, 0, 1);

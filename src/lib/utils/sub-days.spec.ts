@@ -1,4 +1,4 @@
-import { subDays } from './sub-days.js';
+import {subDays} from './sub-days.js';
 
 test('subDays', () => {
   const date = new Date(2021, 0, 1);
