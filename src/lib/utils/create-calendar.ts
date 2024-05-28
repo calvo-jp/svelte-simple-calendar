@@ -1,9 +1,4 @@
-import type {
-  CalendarDate,
-  ICalendar,
-  Month,
-  Weekday,
-} from '$lib/types/index.js';
+import type {CalendarDate, ICalendar, Month, Weekday} from '$lib/types/index.js';
 import {addDays} from './add-days.js';
 import {chunk} from './chunk.js';
 import {createLruCache} from './create-lru-cache.js';

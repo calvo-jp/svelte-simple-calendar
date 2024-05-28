@@ -17,12 +17,8 @@
   let {data, children, ...props}: Props = $props();
   let context = getRangeCalendarContext();
 
-  let isStartDate = $derived(
-    !!context.value.start && isSameDay(data.value, context.value.start),
-  );
-  let isEndDate = $derived(
-    !!context.value.end && isSameDay(data.value, context.value.end),
-  );
+  let isStartDate = $derived(!!context.value.start && isSameDay(data.value, context.value.start));
+  let isEndDate = $derived(!!context.value.end && isSameDay(data.value, context.value.end));
   let isSelected = $derived.by(() => {
     if (isStartDate) return true;
     if (isEndDate) return true;

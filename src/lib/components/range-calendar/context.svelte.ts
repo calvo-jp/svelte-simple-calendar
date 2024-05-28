@@ -2,10 +2,7 @@ import type {ICalendar, Interval} from '$lib/types/index.js';
 import {addMonths} from '$lib/utils/add-months.js';
 import {cloneDate} from '$lib/utils/clone-date.js';
 import {compareAsc} from '$lib/utils/compare-asc.js';
-import {
-  createCalendar,
-  type CreateCalendarConfig,
-} from '$lib/utils/create-calendar.js';
+import {createCalendar, type CreateCalendarConfig} from '$lib/utils/create-calendar.js';
 import {differenceInDays} from '$lib/utils/difference-in-days.js';
 import {isSameDay} from '$lib/utils/is-same-day.js';
 import {subMonths} from '$lib/utils/sub-months.js';
@@ -16,13 +13,9 @@ export interface CreateRangeCalendarContextProps extends CreateCalendarConfig {
   onValueChange?: (value: Interval, valueAsArray: Date[]) => void;
 }
 
-export type CreateRangeCalendarContextReturn = ReturnType<
-  typeof createRangeCalendarContext
->;
+export type CreateRangeCalendarContextReturn = ReturnType<typeof createRangeCalendarContext>;
 
-export function createRangeCalendarContext(
-  props?: CreateRangeCalendarContextProps,
-) {
+export function createRangeCalendarContext(props?: CreateRangeCalendarContextProps) {
   let baseDate = $state(props?.value?.end ?? new Date());
 
   let picked = $state.frozen(
@@ -107,9 +100,7 @@ export function createRangeCalendarContext(
   };
 }
 
-export function setRangeCalendarContext(
-  context: CreateRangeCalendarContextReturn,
-) {
+export function setRangeCalendarContext(context: CreateRangeCalendarContextReturn) {
   setContext('calendar-range', context);
 }
 

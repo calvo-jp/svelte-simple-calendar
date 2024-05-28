@@ -5,9 +5,7 @@ export interface CreateDatePickerContextProps extends CreatePopperProps {
   onValueChange?: ((value: Date) => void) | null;
 }
 
-export type CreateDatePickerContextReturn = ReturnType<
-  typeof createDatePickerContext
->;
+export type CreateDatePickerContextReturn = ReturnType<typeof createDatePickerContext>;
 
 export function createDatePickerContext(props?: CreateDatePickerContextProps) {
   return {};

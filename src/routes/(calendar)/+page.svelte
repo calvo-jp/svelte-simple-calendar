@@ -53,9 +53,7 @@
             <Calendar.Weekdays>
               {#snippet children(weekday)}
                 <th>
-                  <div
-                    class="flex size-10 items-center justify-center font-semibold"
-                  >
+                  <div class="flex size-10 items-center justify-center font-semibold">
                     <Calendar.Weekday data={weekday} />
                   </div>
                 </th>
