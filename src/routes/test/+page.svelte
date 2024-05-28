@@ -17,6 +17,8 @@
       )}
     ></div>
 
-    <div class="rounded-lg bg-gray-900 px-3 py-2 text-white">Floating</div>
+    <div class="z-tooltip rounded-lg bg-gray-900 px-3 py-2 text-white">
+      Floating
+    </div>
   </div>
 {/if}

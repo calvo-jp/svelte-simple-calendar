@@ -9,6 +9,7 @@ export {
   Weeks,
   Year,
 } from '../calendar/index.js';
+export {default as Portal} from '../portal.svelte';
 export {default as Arrow} from './arrow.svelte';
 export {default as Calendar} from './calendar.svelte';
 export {default as ClearTrigger} from './clear-trigger.svelte';
