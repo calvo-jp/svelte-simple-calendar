@@ -1,6 +1,7 @@
 export function portal(node: HTMLElement) {
   function update() {
     document.body.appendChild(node);
+    node.removeAttribute('hidden');
   }
 
   function destroy() {

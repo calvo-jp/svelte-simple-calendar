@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Portal from '$lib/components/portal/portal.svelte';
   import {createPopper} from '$lib/utils/create-popper/index.js';
   import {cn} from '../cn.js';
 
@@ -7,18 +8,20 @@
 
 <button use:popper.reference>Reference</button>
 
-{#if popper.open}
-  <div use:popper.floating>
-    <div
-      use:popper.arrow
-      class={cn(
-        'size-2 bg-gray-900',
-        '[clip-path:polygon(50%_50%,_0%_100%,_100%_100%)]',
-      )}
-    ></div>
+<Portal>
+  {#if popper.open}
+    <div use:popper.floating>
+      <div
+        use:popper.arrow
+        class={cn(
+          'size-2 bg-gray-900',
+          '[clip-path:polygon(50%_50%,_0%_100%,_100%_100%)]',
+        )}
+      ></div>
 
-    <div class="z-tooltip rounded-lg bg-gray-900 px-3 py-2 text-white">
-      Floating
+      <div class="z-tooltip rounded-lg bg-gray-900 px-3 py-2 text-white">
+        Floating
+      </div>
     </div>
-  </div>
-{/if}
+  {/if}
+</Portal>
