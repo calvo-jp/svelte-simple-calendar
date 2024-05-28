@@ -24,7 +24,7 @@
 <button
   type="button"
   onclick={() => {
-    context.onChange(data.value);
+    context.onValueChange(data.value);
   }}
   disabled={data.isDisabled}
   aria-label={data.value.toDateString()}

@@ -13,7 +13,7 @@ import {getContext, setContext} from 'svelte';
 
 export interface CreateRangeCalendarContextProps extends CreateCalendarConfig {
   value?: Interval | null;
-  onChange?: (value: Interval, valueAsArray: Date[]) => void;
+  onValueChange?: (value: Interval, valueAsArray: Date[]) => void;
 }
 
 export type CreateRangeCalendarContextReturn = ReturnType<
@@ -41,10 +41,10 @@ export function createRangeCalendarContext(
     return props.disabledDates(date);
   }
 
-  function onChange(newValue: Interval) {
+  function onValueChange(newValue: Interval) {
     picked = [newValue.start, newValue.end];
     baseDate = newValue.end;
-    props?.onChange?.(
+    props?.onValueChange?.(
       newValue,
       intervalToArray(newValue).filter((v) => !checkDisabled(v)),
     );
@@ -75,7 +75,7 @@ export function createRangeCalendarContext(
         end,
       };
 
-      props?.onChange?.(
+      props?.onValueChange?.(
         v,
         intervalToArray(v).filter((i) => !checkDisabled(i)),
       );
@@ -97,7 +97,7 @@ export function createRangeCalendarContext(
     get value() {
       return value;
     },
-    onChange,
+    onValueChange,
     get calendar() {
       return calendar;
     },

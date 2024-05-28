@@ -8,7 +8,7 @@ import {getContext, setContext} from 'svelte';
 
 export interface CreateCalendarContextProps extends CreateCalendarConfig {
   value?: Date | null;
-  onChange?: (value: Date) => void;
+  onValueChange?: (value: Date) => void;
 }
 
 export type CreateCalendarContextReturn = ReturnType<
@@ -33,9 +33,9 @@ export function createCalendarContext(props?: CreateCalendarContextProps) {
     get value() {
       return value;
     },
-    onChange(newValue: Date) {
+    onValueChange(newValue: Date) {
       value = newValue;
-      props?.onChange?.(newValue);
+      props?.onValueChange?.(newValue);
       baseDate = newValue ?? new Date();
     },
     get calendar() {

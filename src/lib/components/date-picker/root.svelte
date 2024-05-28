@@ -1,14 +1,17 @@
 <script lang="ts">
-  import type {CreatePopperProps} from '$lib/utils/create-popper/create-popper.svelte.js';
   import type {Snippet} from 'svelte';
+  import {
+    createDatePickerContext,
+    type CreateDatePickerContextProps,
+    type CreateDatePickerContextReturn,
+  } from './context.svelte.js';
 
-  interface Props extends CreatePopperProps {
-    value?: Date | null;
-    onChange?: ((value: Date) => void) | null;
-    children: Snippet;
+  interface Props extends CreateDatePickerContextProps {
+    children: Snippet<[context: CreateDatePickerContextReturn]>;
   }
 
-  let {children}: Props = $props();
+  let {children, ...props}: Props = $props();
+  let context = createDatePickerContext(props);
 </script>
 
-{@render children()}
+{@render children(context)}
