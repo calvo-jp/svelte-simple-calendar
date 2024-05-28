@@ -58,14 +58,7 @@ export function createPopper(props?: CreatePopperProps) {
           offset(8),
           flip(),
           shift({padding: 8}),
-
-          ...(arrowEl
-            ? [
-                arrowMiddleware({
-                  element: arrowEl,
-                }),
-              ]
-            : []),
+          ...(arrowEl ? [arrowMiddleware({element: arrowEl})] : []),
         ],
       }).then(({x, y, strategy, placement, middlewareData}) => {
         if (!floatingEl) return;
@@ -75,26 +68,26 @@ export function createPopper(props?: CreatePopperProps) {
         floatingEl.style.left = `${x}px`;
         floatingEl.style.position = strategy;
 
-        if (arrowEl) {
-          const arrowY = middlewareData.arrow?.y;
-          const arrowX = middlewareData.arrow?.x;
+        if (!arrowEl) return;
 
-          const staticSide = {
-            top: 'bottom' as Side,
-            left: 'right' as Side,
-            right: 'left' as Side,
-            bottom: 'top' as Side,
-          }[placement.split('-')[0] as Side];
+        const arrowY = middlewareData.arrow?.y;
+        const arrowX = middlewareData.arrow?.x;
 
-          arrowEl.style.top = arrowY ? `${arrowY}px` : '';
-          arrowEl.style.left = arrowX ? `${arrowX}px` : '';
-          arrowEl.style.position = 'absolute';
-          arrowEl.style.right = '';
-          arrowEl.style.bottom = '';
-          arrowEl.style.width = 'var(--arrow-size, 16px)';
-          arrowEl.style.height = 'var(--arrow-size, 16px)';
-          arrowEl.style[staticSide] = 'var(--arrow-size, -16px)';
-        }
+        const staticSide = {
+          top: 'bottom' as Side,
+          left: 'right' as Side,
+          right: 'left' as Side,
+          bottom: 'top' as Side,
+        }[placement.split('-')[0] as Side];
+
+        arrowEl.style.top = arrowY ? `${arrowY}px` : '';
+        arrowEl.style.left = arrowX ? `${arrowX}px` : '';
+        arrowEl.style.position = 'absolute';
+        arrowEl.style.right = '';
+        arrowEl.style.bottom = '';
+        arrowEl.style.width = 'var(--arrow-size, 16px)';
+        arrowEl.style.height = 'var(--arrow-size, 16px)';
+        arrowEl.style[staticSide] = 'var(--arrow-size, -16px)';
       });
     });
 
