@@ -2,6 +2,10 @@
   import {DatePicker} from '$lib/index.js';
 </script>
 
+<svelte:head>
+  <title>DatePicker | Svelte Simple Calendar</title>
+</svelte:head>
+
 <DatePicker.Root>
   <DatePicker.Control>
     <div>

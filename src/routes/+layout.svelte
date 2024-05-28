@@ -18,12 +18,10 @@
     {
       path: '/date-picker',
       label: 'DatePicker',
-      future: true,
     },
     {
       path: '/range-date-picker',
       label: 'RangeDatePicker',
-      future: true,
     },
   ];
 
