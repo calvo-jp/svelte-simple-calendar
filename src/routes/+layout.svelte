@@ -33,11 +33,11 @@
     <nav>
       <ul class="space-y-2">
         {#each links as link}
-          {@const active = !link.future && $page.url.pathname === link.path}
+          {@const active = $page.url.pathname === link.path}
 
           <li>
             <a
-              href={link.future ? null : link.path}
+              href={link.path}
               class={cn(
                 'flex',
                 'items-center',
@@ -50,19 +50,14 @@
                 !active && 'text-gray-700',
               )}
             >
-              <span class={cn(link.future && 'text-gray-400')}
-                >{link.label}</span
-              >
-
-              {#if link.future}
-                <span class="text-xs text-blue-500">Coming soon</span>
-              {/if}
+              {link.label}
             </a>
           </li>
         {/each}
       </ul>
     </nav>
   </header>
+
   <main class="p-16">
     {@render children()}
   </main>
