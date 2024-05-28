@@ -32,6 +32,14 @@ export interface CreatePopperProps {
    * @default true
    */
   closeOnOutsideClick?: boolean;
+  /**
+   * @default 8
+   */
+  sideOffset?: number;
+  /**
+   * @default 8
+   */
+  alignOffset?: number;
 }
 
 export type CreatePopperReturn = ReturnType<typeof createPopper>;
@@ -55,9 +63,9 @@ export function createPopper(props?: CreatePopperProps) {
         strategy: props?.strategy ?? 'absolute',
         placement: props?.placement ?? 'bottom',
         middleware: [
-          offset(8),
+          offset(props?.sideOffset ?? 8),
           flip(),
-          shift({padding: 8}),
+          shift({padding: props?.alignOffset ?? 8}),
           ...(arrowEl ? [arrowMiddleware({element: arrowEl})] : []),
         ],
       }).then(({x, y, strategy, placement, middlewareData}) => {
