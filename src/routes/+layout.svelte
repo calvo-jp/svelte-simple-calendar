@@ -52,7 +52,9 @@
                 !active && 'text-gray-700',
               )}
             >
-              <span class={cn(link.future && 'text-gray-400')}>{link.label}</span>
+              <span class={cn(link.future && 'text-gray-400')}
+                >{link.label}</span
+              >
 
               {#if link.future}
                 <span class="text-xs text-blue-500">Coming soon</span>

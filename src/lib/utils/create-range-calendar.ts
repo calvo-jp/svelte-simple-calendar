@@ -4,7 +4,10 @@ import {subMonths} from './sub-months.js';
 
 export interface CreateRangeCalendarConfig extends CreateCalendarConfig {}
 
-export function createRangeCalendar(baseDate: Date, config?: CreateRangeCalendarConfig) {
+export function createRangeCalendar(
+  baseDate: Date,
+  config?: CreateRangeCalendarConfig,
+) {
   const calendars: [current: ICalendar, previous: ICalendar] = [
     createCalendar(baseDate, config),
     createCalendar(subMonths(baseDate, 1), config),
