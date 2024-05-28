@@ -11,7 +11,6 @@ import { getContext, setContext } from 'svelte';
 export interface CreateRangeCalendarContextProps extends CreateCalendarConfig {
   value?: Interval | null;
   onChange?: (value: Interval, valueAsArray: Date[]) => void;
-  numOfMonths?: 1 | 2;
 }
 
 export type CreateRangeCalendarContextReturn = ReturnType<typeof createRangeCalendarContext>;
@@ -53,10 +52,7 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
     };
   });
 
-  const calendars: [current: ICalendar, previous: ICalendar] = $derived([
-    createCalendar(baseDate, props),
-    createCalendar(subMonths(baseDate, 1), props),
-  ]);
+  const calendar= $derived(createCalendar(baseDate, props))
 
   function pick(date: Date) {
     let newValue: Date[];
@@ -64,10 +60,7 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
     newValue = [date, ...picked];
     newValue = newValue.slice(0, 2);
 
-    const shouldKeepView = [
-      ...calendars[0].dates,
-      ...(props?.numOfMonths === 2 ? calendars[1].dates : []),
-    ].some((obj) => {
+    const shouldKeepView =calendar.dates.some((obj) => {
       if (obj.isPlaceholder) {
         return false;
       } else {
@@ -108,8 +101,8 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
       return value;
     },
     onChange,
-    get calendars() {
-      return calendars;
+    get calendar() {
+      return calendar;
     },
     nextMonth,
     previousMonth,
