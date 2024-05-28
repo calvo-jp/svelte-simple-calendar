@@ -62,37 +62,27 @@ export function createRangeCalendarContext(
   const calendar = $derived(createCalendar(baseDate, props));
 
   function pick(date: Date) {
-    let newValue: Date[];
+    let l: Date[];
 
-    newValue = [date, ...picked];
-    newValue = newValue.slice(0, 2);
+    l = [date, ...picked];
+    l = l.slice(0, 2);
 
-    const shouldKeepView = calendar.dates.some((obj) => {
-      if (obj.isPlaceholder) {
-        return false;
-      } else {
-        return isSameDay(obj.value, date);
-      }
-    });
+    if (l.length >= 2) {
+      const [start, end] = l.toSorted(compareAsc);
 
-    if (!shouldKeepView) {
-      baseDate = date;
-    }
-
-    if (newValue.length >= 2) {
-      const l = newValue.toSorted(compareAsc);
       const v = {
-        start: l[0],
-        end: l[1],
+        start,
+        end,
       };
 
       props?.onChange?.(
         v,
-        intervalToArray(v).filter((v) => !checkDisabled(v)),
+        intervalToArray(v).filter((i) => !checkDisabled(i)),
       );
     }
 
-    picked = newValue;
+    picked = l;
+    baseDate = date;
   }
 
   function nextMonth() {
