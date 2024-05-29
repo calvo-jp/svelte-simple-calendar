@@ -8,4 +8,6 @@
   let {children}: Props = $props();
 </script>
 
-{@render children()}
+<div>
+  {@render children()}
+</div>
