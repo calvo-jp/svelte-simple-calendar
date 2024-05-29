@@ -144,12 +144,14 @@ npm install svelte-simple-calendar
 </script>
 
 <DatePicker.Root bind:value>
-  <DatePicker.Control>
-    <div>
-      <DatePicker.Trigger />
-      <DatePicker.ClearTrigger />
-    </div>
-  </DatePicker.Control>
+  <div>
+    <DatePicker.Trigger>
+      <DatePicker.Value placeholder="Select Date" />
+    </DatePicker.Trigger>
+    <DatePicker.ClearTrigger>
+      <XIcon />
+    </DatePicker.ClearTrigger>
+  </div>
 
   <DatePicker.Content>
     <DatePicker.Calendar>
