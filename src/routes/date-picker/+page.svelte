@@ -8,12 +8,26 @@
 </svelte:head>
 
 <DatePicker.Root>
-  <DatePicker.Control>
-    <div>
-      <DatePicker.Trigger>Click me</DatePicker.Trigger>
-      <DatePicker.ClearTrigger>x</DatePicker.ClearTrigger>
-    </div>
-  </DatePicker.Control>
+  <div class="flex gap-2">
+    <DatePicker.Trigger>
+      <DatePicker.Value placeholder="Choose date" />
+    </DatePicker.Trigger>
+    <DatePicker.ClearTrigger>
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M17 7L7 17M7 7L17 17"></path>
+      </svg>
+    </DatePicker.ClearTrigger>
+  </div>
 
   <DatePicker.Portal>
     <DatePicker.Content>
