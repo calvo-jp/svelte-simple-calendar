@@ -8,6 +8,8 @@
   let context = getDatePickerContext();
 </script>
 
-<div use:context.popper.floating {...props}>
-  {@render children?.()}
-</div>
+{#if context.isOpen}
+  <div use:context.floating {...props}>
+    {@render children?.()}
+  </div>
+{/if}

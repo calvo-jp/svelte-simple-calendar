@@ -8,6 +8,6 @@
   let context = getDatePickerContext();
 </script>
 
-<button use:context.popper.reference type="button" {...props}>
+<button use:context.reference type="button" {...props}>
   {@render children?.()}
 </button>

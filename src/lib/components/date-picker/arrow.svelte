@@ -8,6 +8,6 @@
   let context = getDatePickerContext();
 </script>
 
-<div use:context.popper.arrow {...props}>
+<div use:context.arrow {...props}>
   {@render children?.()}
 </div>
