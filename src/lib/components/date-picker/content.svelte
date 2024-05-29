@@ -1,13 +1,13 @@
 <script lang="ts">
-  import type {Snippet} from 'svelte';
+  import type {SvelteHTMLElements} from 'svelte/elements';
+  import {getDatePickerContext} from './context.svelte.js';
 
-  interface Props {
-    children: Snippet;
-  }
+  type Props = SvelteHTMLElements['div'];
 
-  let {children}: Props = $props();
+  let {children, ...props}: Props = $props();
+  let context = getDatePickerContext();
 </script>
 
-<div>
-  {@render children()}
+<div use:context.popper.floating {...props}>
+  {@render children?.()}
 </div>

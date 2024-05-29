@@ -10,8 +10,8 @@
 <DatePicker.Root>
   <DatePicker.Control>
     <div>
-      <DatePicker.Trigger />
-      <DatePicker.ClearTrigger />
+      <DatePicker.Trigger>Click me</DatePicker.Trigger>
+      <DatePicker.ClearTrigger>x</DatePicker.ClearTrigger>
     </div>
   </DatePicker.Control>
 

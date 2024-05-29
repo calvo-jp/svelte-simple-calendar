@@ -1,3 +1,13 @@
-<script lang="ts"></script>
+<script lang="ts">
+  import type {SvelteHTMLElements} from 'svelte/elements';
+  import {getDatePickerContext} from './context.svelte.js';
 
-<button></button>
+  type Props = SvelteHTMLElements['button'];
+
+  let {children, ...props}: Props = $props();
+  let context = getDatePickerContext();
+</script>
+
+<button use:context.popper.reference type="button" {...props}>
+  {@render children?.()}
+</button>

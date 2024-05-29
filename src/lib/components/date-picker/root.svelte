@@ -2,6 +2,7 @@
   import type {Snippet} from 'svelte';
   import {
     createDatePickerContext,
+    setDatePickerContext,
     type CreateDatePickerContextProps,
     type CreateDatePickerContextReturn,
   } from './context.svelte.js';
@@ -12,6 +13,8 @@
 
   let {children, ...props}: Props = $props();
   let context = createDatePickerContext(props);
+
+  setDatePickerContext(context);
 </script>
 
 {@render children(context)}
