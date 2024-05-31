@@ -1,4 +1,4 @@
-import { createLruCache } from './create-lru-cache.js';
+import {createLruCache} from './create-lru-cache.js';
 
 const cache = createLruCache<unknown, number>(1024);
 

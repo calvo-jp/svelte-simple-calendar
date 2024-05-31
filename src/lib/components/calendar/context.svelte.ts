@@ -1,11 +1,11 @@
-import { addMonths } from '$lib/utils/add-months.js';
-import { createCalendar, type CreateCalendarConfig } from '$lib/utils/create-calendar.js';
-import { subMonths } from '$lib/utils/sub-months.js';
-import { getContext, setContext } from 'svelte';
+import {addMonths} from '$lib/utils/add-months.js';
+import {createCalendar, type CreateCalendarConfig} from '$lib/utils/create-calendar.js';
+import {subMonths} from '$lib/utils/sub-months.js';
+import {getContext, setContext} from 'svelte';
 
 export interface CreateCalendarContextProps extends CreateCalendarConfig {
   value?: Date | null;
-  onChange?: (value: Date) => void;
+  onValueChange?: (value: Date) => void;
 }
 
 export type CreateCalendarContextReturn = ReturnType<typeof createCalendarContext>;
@@ -28,9 +28,9 @@ export function createCalendarContext(props?: CreateCalendarContextProps) {
     get value() {
       return value;
     },
-    onChange(newValue: Date) {
+    onValueChange(newValue: Date) {
       value = newValue;
-      props?.onChange?.(newValue);
+      props?.onValueChange?.(newValue);
       baseDate = newValue ?? new Date();
     },
     get calendar() {

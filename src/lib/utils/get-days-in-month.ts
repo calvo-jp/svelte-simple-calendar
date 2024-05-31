@@ -1,4 +1,4 @@
-import { cloneDate } from './clone-date.js';
+import {cloneDate} from './clone-date.js';
 
 export function getDaysInMonth(date: Date): number {
   const clone = cloneDate(date);

@@ -1,13 +1,13 @@
 <script lang="ts">
-  import type { Year } from '$lib/types/index.js';
-  import type { Snippet } from 'svelte';
-  import { getCalendarContext } from './context.svelte.js';
+  import type {Year} from '$lib/types/index.js';
+  import type {Snippet} from 'svelte';
+  import {getCalendarContext} from './context.svelte.js';
 
   interface Props {
     children?: Snippet<[context: Year]>;
   }
 
-  let { children }: Props = $props();
+  let {children}: Props = $props();
   let context = getCalendarContext();
 </script>
 

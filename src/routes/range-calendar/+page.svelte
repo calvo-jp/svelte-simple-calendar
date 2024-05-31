@@ -1,19 +1,14 @@
 <script lang="ts">
-  import { RangeCalendar } from '$lib/index.js';
-  import { cn } from '../cn.js';
+  import {RangeCalendar} from '$lib/index.js';
+  import {cn} from '../cn.js';
 </script>
 
 <svelte:head>
-  <title>RangeCalendar | svelte-simple-calendar</title>
+  <title>RangeCalendar | Svelte Simple Calendar</title>
 </svelte:head>
 
 <div class="flex w-fit border border-gray-200">
-  <RangeCalendar.Root
-    onChange={(value, valueAsArray) => {
-      console.log({ value });
-      console.log({ valueAsArray });
-    }}
-  >
+  <RangeCalendar.Root>
     <div class="border-gray-200 first:border-r">
       <div class="flex gap-2 border-b border-gray-200 px-3 py-4">
         <RangeCalendar.PreviousMonthTrigger>

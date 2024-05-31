@@ -1,17 +1,16 @@
-import type { ICalendar, Interval } from '$lib/types/index.js';
-import { addMonths } from '$lib/utils/add-months.js';
-import { cloneDate } from '$lib/utils/clone-date.js';
-import { compareAsc } from '$lib/utils/compare-asc.js';
-import { createCalendar, type CreateCalendarConfig } from '$lib/utils/create-calendar.js';
-import { differenceInDays } from '$lib/utils/difference-in-days.js';
-import { isSameDay } from '$lib/utils/is-same-day.js';
-import { subMonths } from '$lib/utils/sub-months.js';
-import { getContext, setContext } from 'svelte';
+import type {ICalendar, Interval} from '$lib/types/index.js';
+import {addMonths} from '$lib/utils/add-months.js';
+import {cloneDate} from '$lib/utils/clone-date.js';
+import {compareAsc} from '$lib/utils/compare-asc.js';
+import {createCalendar, type CreateCalendarConfig} from '$lib/utils/create-calendar.js';
+import {differenceInDays} from '$lib/utils/difference-in-days.js';
+import {isSameDay} from '$lib/utils/is-same-day.js';
+import {subMonths} from '$lib/utils/sub-months.js';
+import {getContext, setContext} from 'svelte';
 
 export interface CreateRangeCalendarContextProps extends CreateCalendarConfig {
   value?: Interval | null;
-  onChange?: (value: Interval, valueAsArray: Date[]) => void;
-  numOfMonths?: 1 | 2;
+  onValueChange?: (value: Interval, valueAsArray: Date[]) => void;
 }
 
 export type CreateRangeCalendarContextReturn = ReturnType<typeof createRangeCalendarContext>;
@@ -35,10 +34,10 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
     return props.disabledDates(date);
   }
 
-  function onChange(newValue: Interval) {
+  function onValueChange(newValue: Interval) {
     picked = [newValue.start, newValue.end];
     baseDate = newValue.end;
-    props?.onChange?.(
+    props?.onValueChange?.(
       newValue,
       intervalToArray(newValue).filter((v) => !checkDisabled(v)),
     );
@@ -53,46 +52,30 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
     };
   });
 
-  const calendars: [current: ICalendar, previous: ICalendar] = $derived([
-    createCalendar(baseDate, props),
-    createCalendar(subMonths(baseDate, 1), props),
-  ]);
+  const calendar = $derived(createCalendar(baseDate, props));
 
   function pick(date: Date) {
-    let newValue: Date[];
+    let l: Date[];
 
-    newValue = [date, ...picked];
-    newValue = newValue.slice(0, 2);
+    l = [date, ...picked];
+    l = l.slice(0, 2);
 
-    const shouldKeepView = [
-      ...calendars[0].dates,
-      ...(props?.numOfMonths === 2 ? calendars[1].dates : []),
-    ].some((obj) => {
-      if (obj.isPlaceholder) {
-        return false;
-      } else {
-        return isSameDay(obj.value, date);
-      }
-    });
+    if (l.length >= 2) {
+      const [start, end] = l.toSorted(compareAsc);
 
-    if (!shouldKeepView) {
-      baseDate = date;
-    }
-
-    if (newValue.length >= 2) {
-      const l = newValue.toSorted(compareAsc);
       const v = {
-        start: l[0],
-        end: l[1],
+        start,
+        end,
       };
 
-      props?.onChange?.(
+      props?.onValueChange?.(
         v,
-        intervalToArray(v).filter((v) => !checkDisabled(v)),
+        intervalToArray(v).filter((i) => !checkDisabled(i)),
       );
     }
 
-    picked = newValue;
+    picked = l;
+    baseDate = date;
   }
 
   function nextMonth() {
@@ -107,9 +90,9 @@ export function createRangeCalendarContext(props?: CreateRangeCalendarContextPro
     get value() {
       return value;
     },
-    onChange,
-    get calendars() {
-      return calendars;
+    onValueChange,
+    get calendar() {
+      return calendar;
     },
     nextMonth,
     previousMonth,

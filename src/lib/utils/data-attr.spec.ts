@@ -1,4 +1,4 @@
-import { dataAttr } from './data-attr.js';
+import {dataAttr} from './data-attr.js';
 
 test('dataAttr', () => {
   expect(dataAttr(false)).toBeUndefined();

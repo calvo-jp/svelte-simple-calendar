@@ -1,4 +1,4 @@
-import { addMonths } from './add-months.js';
+import {addMonths} from './add-months.js';
 
 test('addMonths', () => {
   const date = new Date(2021, 0, 1);

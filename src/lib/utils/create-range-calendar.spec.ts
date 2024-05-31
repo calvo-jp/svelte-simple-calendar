@@ -1,4 +1,4 @@
-import { createRangeCalendar } from './create-range-calendar.js';
+import {createRangeCalendar} from './create-range-calendar.js';
 
 test('createRangeCalendar', () => {
   const calendars = createRangeCalendar(new Date());

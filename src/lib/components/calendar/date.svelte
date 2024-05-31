@@ -1,28 +1,28 @@
 <script lang="ts">
-  import type { CalendarDate } from '$lib/types/index.js';
-  import { dataAttr } from '$lib/utils/data-attr.js';
-  import { isSameDay } from '$lib/utils/is-same-day.js';
-  import type { Snippet } from 'svelte';
-  import type { SvelteHTMLElements } from 'svelte/elements';
-  import { getCalendarContext } from './context.svelte.js';
+  import type {CalendarDate} from '$lib/types/index.js';
+  import {dataAttr} from '$lib/utils/data-attr.js';
+  import {isSameDay} from '$lib/utils/is-same-day.js';
+  import type {Snippet} from 'svelte';
+  import type {SvelteHTMLElements} from 'svelte/elements';
+  import {getCalendarContext} from './context.svelte.js';
 
   type ButtonProps = Omit<SvelteHTMLElements['button'], 'children'>;
 
   interface Props extends ButtonProps {
     data: CalendarDate;
-    children?: Snippet<[context: CalendarDate & { isSelected: boolean }]>;
+    children?: Snippet<[context: CalendarDate & {isSelected: boolean}]>;
   }
 
-  let { data, children, ...props }: Props = $props();
+  let {data, children, ...props}: Props = $props();
   let context = getCalendarContext();
   let isSelected = $derived(!context.value ? false : isSameDay(context.value, data.value));
-  let renderProps = $derived({ ...data, isSelected });
+  let renderProps = $derived({...data, isSelected});
 </script>
 
 <button
   type="button"
   onclick={() => {
-    context.onChange(data.value);
+    context.onValueChange(data.value);
   }}
   disabled={data.isDisabled}
   aria-label={data.value.toDateString()}

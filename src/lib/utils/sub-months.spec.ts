@@ -1,4 +1,4 @@
-import { subMonths } from './sub-months.js';
+import {subMonths} from './sub-months.js';
 
 test('subMonths', () => {
   const date = new Date(2021, 0, 1);

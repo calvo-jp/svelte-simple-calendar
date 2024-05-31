@@ -1,6 +1,6 @@
-import type { ICalendar } from '$lib/types/index.js';
-import { createCalendar, type CreateCalendarConfig } from './create-calendar.js';
-import { subMonths } from './sub-months.js';
+import type {ICalendar} from '$lib/types/index.js';
+import {createCalendar, type CreateCalendarConfig} from './create-calendar.js';
+import {subMonths} from './sub-months.js';
 
 export interface CreateRangeCalendarConfig extends CreateCalendarConfig {}
 

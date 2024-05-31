@@ -1,4 +1,4 @@
-import { endOfDay } from './end-of-day.js';
+import {endOfDay} from './end-of-day.js';
 
 test('endOfDay', () => {
   const date = new Date(2021, 0, 1, 12, 34, 56, 789);

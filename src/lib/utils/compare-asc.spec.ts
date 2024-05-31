@@ -1,4 +1,4 @@
-import { compareAsc } from './compare-asc.js';
+import {compareAsc} from './compare-asc.js';
 
 test('compareAsc', () => {
   const today = new Date();
